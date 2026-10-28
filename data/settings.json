@@ -1,0 +1,93 @@
+{
+  "_note": "Бизнес-правила «Фьюжн». Единый источник для сайта, приложения и бэкенда. Решения клиента от 26.10.2026. Проект портфолио: эквайринг и КБЖУ условные.",
+  "timezone": "Europe/Saratov",
+  "hours": {
+    "open": "12:00",
+    "close": "23:00",
+    "ordersUntil": "22:00",
+    "statusTexts": {
+      "open": "Сейчас работаем до 23:00",
+      "lastOrdersPassed": "Заказы на сегодня приняты до 22:00 — оформите ко времени на завтра",
+      "closed": "Сейчас закрыто — примем заказ ко времени с 12:00"
+    },
+    "slotStepMinutes": 30,
+    "slotsFrom": "12:30",
+    "slotsUntil": "23:00"
+  },
+  "order": {
+    "minSum": 500,
+    "deliveryPrice": 0,
+    "deliveryTimeMinutes": 60,
+    "pickupTimeMinutes": 30,
+    "containers": { "price": 0, "rule": "по количеству порций; показываем как «Контейнеры — бесплатно»" },
+    "payment": [
+      { "id": "card_online", "title": "Картой онлайн", "provider": "Альфа-Банк (условно, проект портфолио)" },
+      { "id": "card_courier", "title": "Картой курьеру" },
+      { "id": "cash", "title": "Наличными", "askChange": true }
+    ]
+  },
+  "discounts": {
+    "stackable": false,
+    "rule": "Применяется одна, самая выгодная для клиента",
+    "progressive": [
+      { "from": 1000, "percent": 3 },
+      { "from": 2000, "percent": 5 },
+      { "from": 3000, "percent": 7 },
+      { "from": 10000, "percent": 15 }
+    ],
+    "birthday": { "percent": 10, "daysBefore": 2, "daysAfter": 2, "methods": ["pickup"], "note": "Не действует на доставку и в зале" }
+  },
+  "orderStatuses": [
+    { "id": "processing", "title": "В обработке", "text": "Проверяем заказ и передаём на кухню" },
+    { "id": "cooking", "title": "Готовим", "text": "Повара уже работают над вашим заказом" },
+    { "id": "courier_soon", "title": "Курьер скоро заберёт заказ", "text": "Заказ собран и упакован" },
+    { "id": "on_the_way", "title": "В пути", "text": "Курьер едет к вам" },
+    { "id": "delayed", "title": "Курьер задерживается", "text": "Извините за ожидание — курьер будет примерно через {minutes} мин", "emergency": true },
+    { "id": "delivered", "title": "Заказ доставлен", "text": "Приятного аппетита!" }
+  ],
+  "pickupStatuses": [
+    { "id": "processing", "title": "В обработке" },
+    { "id": "cooking", "title": "Готовим" },
+    { "id": "ready", "title": "Готов к выдаче" },
+    { "id": "picked_up", "title": "Выдан" }
+  ],
+  "cities": [
+    { "id": "balakovo", "title": "Балаково" },
+    { "id": "volsk", "title": "Вольск" }
+  ],
+  "points": [
+    {
+      "id": "lenina", "city": "balakovo", "title": "Фьюжн на Ленина", "address": "ул. Ленина, 122", "district": "Жилгород",
+      "phone": "+7 (000) 000-00-01", "tel": "+70000000001",
+      "delivery": true, "deliveryZone": "Жилгород", "pickup": true, "tour3d": null,
+      "geo": [52.021556, 47.782387], "yandexOrg": "1296493081"
+    },
+    {
+      "id": "trnavskaya", "city": "balakovo", "title": "Фьюжн на Трнавской", "address": "ул. Трнавская, 36/8", "district": "Новые районы",
+      "phone": "+7 (000) 000-00-02", "tel": "+70000000002",
+      "delivery": true, "deliveryZone": "Новые районы", "pickup": true, "tour3d": null,
+      "geo": null, "yandexOrg": null, "_todo": "нужны координаты и код организации — на старом сайте здесь карта Вольска"
+    },
+    {
+      "id": "greenhouse", "city": "balakovo", "title": "Рыбный ресторанчик Фьюжн", "address": "ул. Степная, 25", "district": null,
+      "phone": "+7 (000) 000-00-04", "tel": "+70000000004",
+      "delivery": false, "deliveryZone": null, "pickup": true, "tour3d": null,
+      "geo": null, "yandexOrg": "234111993486", "_todo": "адрес сменился на ул. Степная, 25 — нужны новые координаты"
+    },
+    {
+      "id": "volsk", "city": "volsk", "title": "Фьюжн в Вольске", "address": "ул. Октябрьская, 106, гостиница «Волга»", "district": null,
+      "phone": "+7 (000) 000-00-03", "tel": "+70000000003",
+      "delivery": true, "deliveryZone": "весь Вольск", "pickup": true, "tour3d": null,
+      "geo": [52.041584, 47.393604], "yandexOrg": "221008371692",
+      "about": "Два зала и VIP-комната"
+    }
+  ],
+  "integrations": {
+    "pos": "iiko — меню, стоп-лист, история заказов по телефону, метка «Уже заказывали»",
+    "reviews": "Яндекс Карты (вместо sigcomments)",
+    "analytics": { "yandexMetrika": 98377084, "startAfterConsent": true },
+    "sms": "провайдер не выбран; длина кода — 4 цифры"
+  },
+  "nutrition": { "show": true, "approximate": true, "note": "КБЖУ ориентировочные — проект портфолио" },
+  "removed": ["Пиво из меню, акций и допродаж", "Категория «Напитки»", "Рейтинг sigcomments"]
+}

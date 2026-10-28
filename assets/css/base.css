@@ -1,0 +1,105 @@
+/* «Фьюжн» — база: сброс, типографика, сетка, утилиты. Все значения — из tokens.css. */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--layout-header) + 64px); }
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: var(--color-brand-text); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus { outline: none; }
+:focus-visible { outline: var(--border-focus) solid var(--color-focus); outline-offset: 2px; }
+::selection { background: var(--color-brand); color: var(--color-on-brand); }
+[hidden] { display: none !important; }
+h1, h2, h3, h4, h5, p, ul, ol, figure, blockquote, dl, dd { margin: 0; }
+ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
+
+/* --- Типографика */
+.t-display, .t-h1, .t-h2, .t-h3 { text-wrap: balance; font-feature-settings: "liga", "kern"; }
+/* Не оставлять одно слово на последней строке абзаца */
+p, li, dd, figcaption, blockquote { text-wrap: pretty; }
+/* Ручной перенос строки только на широких экранах */
+.br-wide { display: none; }
+@media (min-width: 1024px) { .br-wide { display: inline; } }
+.t-display { font: var(--text-display-weight) var(--text-display-size)/var(--text-display-line) var(--text-display-family); letter-spacing: var(--text-display-tracking); }
+.t-h1 { font: var(--text-h1-weight) var(--text-h1-size)/var(--text-h1-line) var(--text-h1-family); letter-spacing: var(--text-h1-tracking); }
+.t-h2 { font: var(--text-h2-weight) var(--text-h2-size)/var(--text-h2-line) var(--text-h2-family); }
+.t-h3 { font: var(--text-h3-weight) var(--text-h3-size)/var(--text-h3-line) var(--text-h3-family); }
+.t-h4 { font: var(--text-h4-weight) var(--text-h4-size)/var(--text-h4-line) var(--text-h4-family); }
+.t-body-lg { font-size: var(--text-body-lg-size); line-height: var(--text-body-lg-line); }
+.t-body { font-size: var(--text-body-size); line-height: var(--text-body-line); }
+.t-body-sm { font-size: var(--text-body-sm-size); line-height: var(--text-body-sm-line); }
+.t-caption { font-size: var(--text-caption-size); line-height: var(--text-caption-line); font-weight: var(--text-caption-weight); }
+.t-overline { font-size: var(--text-overline-size); line-height: var(--text-overline-line); font-weight: var(--text-overline-weight); letter-spacing: var(--text-overline-tracking); text-transform: uppercase; }
+.t-italic { font-style: italic; }
+.t-muted { color: var(--color-text-muted); }
+.t-subtle { color: var(--color-text-subtle); }
+.t-brand { color: var(--color-brand-text); }
+.prose { max-width: 68ch; }
+.prose > * + * { margin-top: var(--space-4); }
+.prose h2 { margin-top: var(--space-10); }
+.prose ul, .prose ol { padding-left: 1.25em; }
+.prose li + li { margin-top: var(--space-2); }
+
+/* Цены: Golos 600 и табличные цифры. Рубль отделяется неразрывным узким пробелом в разметке: «550&#8239;₽» */
+.price, .price-sm, .price-lg, .price-total { font-family: var(--font-body); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.price-sm { font-size: var(--text-price-sm-size); font-weight: var(--text-price-sm-weight); line-height: var(--text-price-sm-line); }
+.price { font-size: var(--text-price-size); font-weight: var(--text-price-weight); line-height: var(--text-price-line); }
+.price-lg { font-size: var(--text-price-lg-size); font-weight: var(--text-price-lg-weight); line-height: var(--text-price-lg-line); letter-spacing: var(--text-price-lg-tracking); }
+.price-total { font-size: var(--text-price-total-size); font-weight: var(--text-price-total-weight); line-height: var(--text-price-total-line); letter-spacing: var(--text-price-total-tracking); }
+.price-old { color: var(--color-text-subtle); text-decoration: line-through; font-weight: 400; margin-left: var(--space-2); font-size: .85em; }
+
+/* --- Сетка */
+.container {
+  width: 100%; max-width: calc(var(--layout-container) + 2 * var(--layout-margin-lg)); margin-inline: auto;
+  padding-left: max(var(--layout-margin-sm), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--layout-margin-sm), env(safe-area-inset-right, 0px));
+}
+@media (min-width: 768px) { .container { padding-left: max(var(--layout-margin-md), env(safe-area-inset-left, 0px)); padding-right: max(var(--layout-margin-md), env(safe-area-inset-right, 0px)); } }
+@media (min-width: 1280px) { .container { padding-left: var(--layout-margin-lg); padding-right: var(--layout-margin-lg); } }
+.grid { display: grid; grid-template-columns: repeat(var(--layout-columns-sm), minmax(0, 1fr)); gap: var(--layout-gutter-sm); }
+@media (min-width: 768px) { .grid { grid-template-columns: repeat(var(--layout-columns-md), minmax(0, 1fr)); gap: var(--layout-gutter-md); } }
+@media (min-width: 1280px) { .grid { grid-template-columns: repeat(var(--layout-columns-lg), minmax(0, 1fr)); gap: var(--layout-gutter-lg); } }
+/* Сетка карточек блюд: 2 колонки на телефоне, 3 на планшете, 4 на ноутбуке/десктопе */
+.dish-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
+@media (min-width: 768px) { .dish-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); } }
+@media (min-width: 1280px) { .dish-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-6); } }
+
+.stack { display: flex; flex-direction: column; gap: var(--stack-gap, var(--space-4)); }
+.cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--cluster-gap, var(--space-3)); }
+.section { padding-block: var(--space-12); }
+@media (min-width: 1280px) { .section { padding-block: var(--space-20); } }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-6); flex-wrap: wrap; }
+
+/* --- Иконки */
+.icon { width: 24px; height: 24px; flex: none; }
+.icon--sm { width: 18px; height: 18px; }
+.icon--lg { width: 32px; height: 32px; }
+
+/* --- Утилиты */
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip-link { position: absolute; left: var(--space-4); top: -100px; z-index: var(--z-toast); background: var(--color-ink); color: var(--color-on-ink); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); }
+.skip-link:focus { top: var(--space-4); }
+.no-scroll { overflow: hidden; }
+.divider { height: 1px; background: var(--color-border); border: 0; margin: 0; }
+
+/* --- Появление при прокрутке. Без JS и при reduced-motion всё видно сразу. */
+.js-motion .reveal { opacity: 0; transform: translateY(16px); transition: opacity var(--dur-slow) var(--ease-decelerate), transform var(--dur-slow) var(--ease-decelerate); }
+.js-motion .reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
+  .js-motion .reveal { opacity: 1; transform: none; }
+}

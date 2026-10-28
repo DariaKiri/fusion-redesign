@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 6 340 94" role="img" aria-label="Фьюжн"><title>Фьюжн</title>
+<g fill="#1F2421">
+    <path d="M31 14L51 6V100H38V14Z"/>
+    <path fill-rule="evenodd" d="M10.5 53a34 31 0 1 0 68 0a34 31 0 1 0 -68 0Z M23.5 53a21 28.5 0 1 0 42 0a21 28.5 0 1 0 -42 0Z"/>
+    <path d="M80.5 47L100.5 39V100H87.5V47Z"/>
+    <path fill-rule="evenodd" d="M100.5 62H109.5C125.5 62 131.5 70 131.5 81C131.5 92 125.5 100 109.5 100H100.5Z M100.5 64.5H108.5C115.5 64.5 118.5 71 118.5 81C118.5 91 115.5 97.5 108.5 97.5H100.5Z"/>
+    <path d="M138.5 47L158.5 39V100H145.5V47Z"/><path d="M158.5 67.5H162.5V72.5H158.5Z"/>
+    <path fill-rule="evenodd" d="M161.5 70a26 31 0 1 0 52 0a26 31 0 1 0 -52 0Z M174.5 70a13 28.5 0 1 0 26 0a13 28.5 0 1 0 -26 0Z"/>
+    <path d="M236.5 47L256.5 39V100H243.5V47Z"/>
+    <path d="M284 47L304 39V100H291V47Z"/><path d="M318 47L338 39V100H325V47Z"/><path d="M304 68H325V70.5H304Z"/>
+  </g>
+  <g fill="none" stroke="#1F2421" stroke-linejoin="miter">
+    <path d="M219.5 41L243.5 70M280.5 41L256.5 70" stroke-width="2.5"/>
+    <path d="M243.5 71L221.5 100M256.5 71L280.5 100" stroke-width="11"/>
+  </g>
+</svg>

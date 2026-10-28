@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ru" data-base="">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Оформление заказа — Фьюжн</title>
+<meta name="description" content="Оформление заказа в кафе «Фьюжн»: доставка или самовывоз, время, оплата.">
+<link rel="canonical" href="https://fusion-redesign.example/checkout.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Фьюжн">
+<meta property="og:title" content="Оформление заказа — Фьюжн">
+<meta property="og:description" content="Оформление заказа в кафе «Фьюжн»: доставка или самовывоз, время, оплата.">
+<meta property="og:url" content="https://fusion-redesign.example/checkout.html">
+<meta property="og:image" content="https://fusion-redesign.example/assets/brand/og-image.png">
+<meta property="og:locale" content="ru_RU">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141715" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/brand/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Golos+Text:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/tokens/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+
+</head>
+<body data-page="checkout">
+<a class="skip-link" href="#main">Перейти к содержанию</a>
+<header class="header">
+  <div class="container header__row">
+    <a class="header__logo" href="./" aria-label="Фьюжн — на главную">
+      <span class="logo-full"><svg class="logo-svg" aria-hidden="true" focusable="false" viewBox="0 0 482 100" >
+<svg width="100" height="100" viewBox="0 0 100 100"><mask id="msl-ah" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+    <rect width="100" height="100" fill="#fff"/>
+    <path d="M67 35L87 11" stroke="#000" stroke-width="4"/>
+  </mask>
+  <circle mask="url(#msl-ah)" cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width="7"/>
+  <path d="M46.5 4L54 0L51 100H49.5Z" fill="currentColor"/>
+  <circle cx="50" cy="50" r="15" fill="#E41E23"/></svg><svg x="120" width="361.7" height="100" viewBox="0 6 340 94"><g fill="currentColor">
+    <path d="M31 14L51 6V100H38V14Z"/>
+    <path fill-rule="evenodd" d="M10.5 53a34 31 0 1 0 68 0a34 31 0 1 0 -68 0Z M23.5 53a21 28.5 0 1 0 42 0a21 28.5 0 1 0 -42 0Z"/>
+    <path d="M80.5 47L100.5 39V100H87.5V47Z"/>
+    <path fill-rule="evenodd" d="M100.5 62H109.5C125.5 62 131.5 70 131.5 81C131.5 92 125.5 100 109.5 100H100.5Z M100.5 64.5H108.5C115.5 64.5 118.5 71 118.5 81C118.5 91 115.5 97.5 108.5 97.5H100.5Z"/>
+    <path d="M138.5 47L158.5 39V100H145.5V47Z"/><path d="M158.5 67.5H162.5V72.5H158.5Z"/>
+    <path fill-rule="evenodd" d="M161.5 70a26 31 0 1 0 52 0a26 31 0 1 0 -52 0Z M174.5 70a13 28.5 0 1 0 26 0a13 28.5 0 1 0 -26 0Z"/>
+    <path d="M236.5 47L256.5 39V100H243.5V47Z"/>
+    <path d="M284 47L304 39V100H291V47Z"/><path d="M318 47L338 39V100H325V47Z"/><path d="M304 68H325V70.5H304Z"/>
+  </g>
+  <g fill="none" stroke="currentColor" stroke-linejoin="miter">
+    <path d="M219.5 41L243.5 70M280.5 41L256.5 70" stroke-width="2.5"/>
+    <path d="M243.5 71L221.5 100M256.5 71L280.5 100" stroke-width="11"/>
+  </g></svg>
+</svg></span>
+      <span class="logo-mark"><svg class="mark-svg" aria-hidden="true" focusable="false" viewBox="0 0 100 100" >
+<mask id="msb-gm" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+    <rect width="100" height="100" fill="#fff"/>
+    <path d="M66 36L86 12" stroke="#000" stroke-width="5"/>
+  </mask>
+  <circle mask="url(#msb-gm)" cx="50" cy="50" r="30.5" fill="none" stroke="currentColor" stroke-width="11"/>
+  <path d="M45 4L55 0L51.5 100H48.5Z" fill="currentColor"/>
+  <circle cx="50" cy="50" r="15" fill="#E41E23"/>
+</svg></span>
+    </a>
+    <a class="addr-chip" href="address.html" data-place-chip>
+      <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-pin"/></svg>
+      <span class="addr-chip__text"><span class="addr-chip__title" data-place-title>Куда доставляем?</span><span class="addr-chip__sub" data-place-sub>Выберите адрес или кафе</span></span>
+      <svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons/sprite.svg#i-chevron-down"/></svg>
+    </a>
+    <nav class="header__nav" aria-label="Основное меню">
+      <a href="menu.html">Меню</a><a href="promo.html">Акции</a><a href="delivery.html">Доставка</a><a href="about.html">О нас</a><a href="contacts.html">Контакты</a>
+    </nav>
+    <span class="header__spacer"></span>
+    <a class="header__phone" href="tel:+70000000001" data-place-phone>+7 (000) 000-00-01<small data-place-phone-label>Жилгород · 12:00–23:00</small></a>
+    <div class="header__actions">
+      <button class="btn btn--ghost btn--icon" type="button" data-open-search aria-label="Поиск по меню"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-search"/></svg></button>
+      <a class="btn btn--ghost btn--icon hide-sm" href="profile.html" aria-label="Профиль" data-profile-link><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-user"/></svg></a>
+      <a class="btn header__cart" href="cart.html" data-cart-target aria-label="Корзина"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-cart"/></svg><span data-cart-sum>0&#8239;₽</span></a>
+      <button class="btn btn--ghost btn--icon" type="button" data-open-drawer aria-label="Открыть меню сайта" aria-haspopup="dialog"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+<div class="container page">
+  <nav class="crumbs" aria-label="Навигация"><a href="cart.html">Корзина</a><span aria-hidden="true">/</span><span>Оформление</span></nav>
+  <div class="page-head"><h1 class="t-h1">Оформление заказа</h1></div>
+  <form id="checkout" class="cols" novalidate>
+    <div>
+      <div class="banner banner--error" id="co-errors" tabindex="-1" hidden style="margin-bottom:var(--space-6);display:block"></div>
+      <fieldset class="fieldset">
+        <legend>Как получить</legend>
+        <div class="seg" id="co-mode" role="group" aria-label="Способ получения"><button class="seg__btn" type="button" aria-pressed="true" data-value="delivery"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons/sprite.svg#i-delivery"/></svg>Доставка</button><button class="seg__btn" type="button" aria-pressed="false" data-value="pickup"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons/sprite.svg#i-pickup"/></svg>Самовывоз</button></div>
+        <div id="co-delivery" class="stack">
+          <div class="form-row">
+            <div class="field"><label class="field__label" for="co-city">Город</label><select class="select" id="co-city"><option value="balakovo">Балаково</option><option value="volsk">Вольск</option></select></div>
+            <div class="field" style="grid-column:span 2"><label class="field__label" for="co-street">Улица и дом</label><input class="input" id="co-street" autocomplete="street-address" required></div>
+          </div>
+          <div class="form-row">
+            <div class="field"><label class="field__label" for="co-apt">Квартира</label><input class="input" id="co-apt" inputmode="numeric"></div>
+            <div class="field"><label class="field__label" for="co-entr">Подъезд</label><input class="input" id="co-entr" inputmode="numeric"></div>
+            <div class="field"><label class="field__label" for="co-floor">Этаж</label><input class="input" id="co-floor" inputmode="numeric"></div>
+            <div class="field"><label class="field__label" for="co-door">Домофон</label><input class="input" id="co-door"></div>
+          </div>
+        </div>
+        <div id="co-pickup" class="stack" hidden tabindex="-1">
+          <label class="point"><input type="radio" name="co-pt" value="lenina"><p class="point__name">Фьюжн на Ленина</p><span class="point__addr">Балаково, ул. Ленина, 122</span></label>
+          <label class="point"><input type="radio" name="co-pt" value="trnavskaya"><p class="point__name">Фьюжн на Трнавской</p><span class="point__addr">Балаково, ул. Трнавская, 36/8</span></label>
+          <label class="point"><input type="radio" name="co-pt" value="greenhouse"><p class="point__name">Рыбный ресторанчик</p><span class="point__addr">Балаково, ул. Степная, 25</span></label>
+          <label class="point"><input type="radio" name="co-pt" value="volsk"><p class="point__name">Фьюжн в Вольске</p><span class="point__addr">Вольск, ул. Октябрьская, 106</span></label>
+          <p class="t-body-sm t-muted" id="bd-note" hidden>В день рождения скидка 10% на самовывоз. <a href="profile.html">Укажите дату рождения в профиле</a>, и она применится сама.</p>
+        </div>
+      </fieldset>
+      <fieldset class="fieldset">
+        <legend>Когда</legend>
+        <div class="choice">
+          <label class="choice__item"><input type="radio" name="when" id="t-asap" checked><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-clock"/></svg><span class="choice__text"><span class="choice__title">Как можно скорее</span><span class="choice__sub" id="asap-sub"></span></span><span class="choice__mark"></span></label>
+          <label class="choice__item"><input type="radio" name="when" id="t-later"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-clock"/></svg><span class="choice__text"><span class="choice__title">Ко времени</span><span class="choice__sub">С 12:30 до 23:00, шаг 30 минут</span></span><span class="choice__mark"></span></label>
+        </div>
+        <div class="slots" id="later-box" hidden>
+          <div class="field"><label class="field__label" for="co-day">День</label><select class="select" id="co-day"></select></div>
+          <div class="field"><label class="field__label" for="co-slot">Время</label><select class="select" id="co-slot"></select></div>
+        </div>
+      </fieldset>
+      <fieldset class="fieldset">
+        <legend>Контакты</legend>
+        <div class="form-row">
+          <div class="field"><label class="field__label" for="co-name">Имя</label><input class="input" id="co-name" autocomplete="given-name" required></div>
+          <div class="field"><label class="field__label" for="co-phone">Телефон</label><input class="input input--phone" id="co-phone" type="tel" data-phone required></div>
+        </div>
+        <div class="field"><label class="field__label" for="co-comment">Комментарий</label><textarea class="textarea" id="co-comment" placeholder="Например: без лука, позвоните за 10 минут"></textarea></div>
+      </fieldset>
+      <fieldset class="fieldset">
+        <legend>Оплата</legend>
+        <div class="choice">
+          <label class="choice__item"><input type="radio" name="pay" value="card_online" checked><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-card"/></svg><span class="choice__text"><span class="choice__title">Картой онлайн</span><span class="choice__sub">Альфа-Банк: карты, СБП, Mir Pay</span></span><span class="choice__mark"></span></label>
+          <label class="choice__item"><input type="radio" name="pay" value="card_courier"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-card"/></svg><span class="choice__text"><span class="choice__title">Картой при получении</span></span><span class="choice__mark"></span></label>
+          <label class="choice__item"><input type="radio" name="pay" value="cash"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-cash"/></svg><span class="choice__text"><span class="choice__title">Наличными</span></span><span class="choice__mark"></span></label>
+        </div>
+        <div class="field" id="change-box" hidden><label class="field__label" for="co-change">Сдача с</label><input class="input" id="co-change" inputmode="numeric" placeholder="Например, 2000"></div>
+        <label class="check"><input type="checkbox" id="co-consent"> <span>Согласен на обработку персональных данных по <a href="privacy.html" target="_blank">политике конфиденциальности</a> и принимаю <a href="terms.html" target="_blank">пользовательское соглашение</a></span></label>
+        <label class="check"><input type="checkbox" id="co-news"> <span>Хочу получать акции по SMS — не чаще раза в неделю</span></label>
+      </fieldset>
+    </div>
+    <aside class="summary" aria-label="Ваш заказ">
+      <h2 class="t-h3">Ваш заказ</h2>
+      <div class="summary__rows" id="co-items"></div>
+      <div class="summary__rows">
+        <div class="summary__row"><span>Блюда</span><span id="co-sum"></span></div>
+        <div class="summary__row summary__row--discount" id="co-row-discount" hidden><span></span><span></span></div>
+        <div class="summary__row summary__row--free" id="co-row-delivery"><span>Доставка</span><span>Бесплатно</span></div>
+        <div class="summary__row summary__row--free"><span>Контейнеры</span><span>Бесплатно</span></div>
+      </div>
+      <div class="summary__total"><b>К оплате</b><span class="price-total" id="co-total"></span></div>
+      <button class="btn btn--lg btn--block" type="submit" id="co-submit">Заказать</button>
+      <p class="summary__note summary__note--demo"><b>Демо.</b> Заказ никуда не&nbsp;отправляется и&nbsp;не&nbsp;оплачивается&nbsp;— после нажатия откроется пример страницы статуса.</p>
+      <p class="summary__note">Подтвердим заказ звонком или SMS. Статус можно смотреть на сайте.</p>
+    </aside>
+  </form>
+</div>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="stack"><span class="footer__logo-wrap" style="color:var(--palette-nori-100)"><svg class="footer__logo" aria-hidden="true" focusable="false" viewBox="0 0 482 100" >
+<svg width="100" height="100" viewBox="0 0 100 100"><mask id="msl-af" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+    <rect width="100" height="100" fill="#fff"/>
+    <path d="M67 35L87 11" stroke="#000" stroke-width="4"/>
+  </mask>
+  <circle mask="url(#msl-af)" cx="50" cy="50" r="32" fill="none" stroke="currentColor" stroke-width="7"/>
+  <path d="M46.5 4L54 0L51 100H49.5Z" fill="currentColor"/>
+  <circle cx="50" cy="50" r="15" fill="#E41E23"/></svg><svg x="120" width="361.7" height="100" viewBox="0 6 340 94"><g fill="currentColor">
+    <path d="M31 14L51 6V100H38V14Z"/>
+    <path fill-rule="evenodd" d="M10.5 53a34 31 0 1 0 68 0a34 31 0 1 0 -68 0Z M23.5 53a21 28.5 0 1 0 42 0a21 28.5 0 1 0 -42 0Z"/>
+    <path d="M80.5 47L100.5 39V100H87.5V47Z"/>
+    <path fill-rule="evenodd" d="M100.5 62H109.5C125.5 62 131.5 70 131.5 81C131.5 92 125.5 100 109.5 100H100.5Z M100.5 64.5H108.5C115.5 64.5 118.5 71 118.5 81C118.5 91 115.5 97.5 108.5 97.5H100.5Z"/>
+    <path d="M138.5 47L158.5 39V100H145.5V47Z"/><path d="M158.5 67.5H162.5V72.5H158.5Z"/>
+    <path fill-rule="evenodd" d="M161.5 70a26 31 0 1 0 52 0a26 31 0 1 0 -52 0Z M174.5 70a13 28.5 0 1 0 26 0a13 28.5 0 1 0 -26 0Z"/>
+    <path d="M236.5 47L256.5 39V100H243.5V47Z"/>
+    <path d="M284 47L304 39V100H291V47Z"/><path d="M318 47L338 39V100H325V47Z"/><path d="M304 68H325V70.5H304Z"/>
+  </g>
+  <g fill="none" stroke="currentColor" stroke-linejoin="miter">
+    <path d="M219.5 41L243.5 70M280.5 41L256.5 70" stroke-width="2.5"/>
+    <path d="M243.5 71L221.5 100M256.5 71L280.5 100" stroke-width="11"/>
+  </g></svg>
+</svg></span><p class="t-body-sm" style="color:var(--palette-nori-400)">Японская кухня без церемоний с 2009 года. Доставка и самовывоз в Балакове и Вольске.<br>Ежедневно 12:00–23:00, заказы на сегодня — до 22:00.</p></div>
+      <div class="footer__points">
+        <div class="footer__point"><b>Ленина, 122</b><span>Балаково · Жилгород</span><a href="tel:+70000000001">+7 (000) 000-00-01</a></div>
+        <div class="footer__point"><b>Трнавская, 36/8</b><span>Балаково · Новые районы</span><a href="tel:+70000000002">+7 (000) 000-00-02</a></div>
+        <div class="footer__point"><b>Степная, 25</b><span>Балаково · Рыбный ресторанчик</span><a href="tel:+70000000004">+7 (000) 000-00-04</a></div>
+        <div class="footer__point"><b>Октябрьская, 106</b><span>Вольск · гостиница «Волга»</span><a href="tel:+70000000003">+7 (000) 000-00-03</a></div>
+      </div>
+    </div>
+    <nav class="footer__nav" aria-label="Разделы сайта"><a href="menu.html">Меню</a><a href="delivery.html">Доставка и оплата</a><a href="promo.html">Акции</a><a href="about.html">О нас</a><a href="contacts.html">Контакты</a><a href="reviews.html">Отзывы</a><a href="profile.html">Профиль</a></nav>
+    <div class="footer__legal"><span>© Кафе «Фьюжн», 2009–2026</span><a href="privacy.html">Политика конфиденциальности</a><a href="terms.html">Пользовательское соглашение</a><a href="cookies.html">Cookies</a><button class="footer__cookie-btn" type="button" data-cookie-settings>Настройки cookies</button></div>
+  </div>
+</footer>
+
+<script src="assets/js/ui.js" data-sprite="assets/icons/sprite.svg"></script>
+<script src="assets/js/app.js" defer></script>
+<script src="assets/js/pages.js" defer></script>
+</body>
+</html>

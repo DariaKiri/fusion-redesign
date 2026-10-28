@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Дизайн-система Фьюжн</title>
+<meta name="description" content="Дизайн-система сети кафе «Фьюжн»: логотип, токены, типографика, иконки и компоненты сайта и приложения.">
+<link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Golos+Text:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/tokens/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<style>
+/* Только для витрины: раскладка демонстраций. Компоненты берутся из components.css. */
+.ds-hero { padding-block: var(--space-12) var(--space-8); display: grid; gap: var(--space-5); }
+.ds-toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--layout-header-sm)); z-index: var(--z-sticky); background: var(--color-bg); border-bottom: 1px solid var(--color-border); padding-block: var(--space-2); }
+@media (min-width: 1280px) { .ds-toc { top: var(--layout-header); } }
+.ds-sec { padding-block: var(--space-12); border-bottom: 1px solid var(--color-border); scroll-margin-top: 140px; }
+.ds-sec > .t-h2 { margin-bottom: var(--space-2); }
+.ds-lead { color: var(--color-text-muted); max-width: 70ch; margin-bottom: var(--space-8); }
+.ds-sub { margin: var(--space-10) 0 var(--space-4); }
+.ds-sub:first-of-type { margin-top: 0; }
+.ds-box { border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); background: var(--color-surface); }
+.ds-box--sunk { background: var(--color-bg-subtle); }
+.ds-row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+.ds-cols { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.ds-label { font: 500 12px/1.3 var(--font-mono); color: var(--color-text-subtle); }
+.ds-note { font-size: var(--text-body-sm-size); color: var(--color-text-muted); margin-top: var(--space-3); max-width: 70ch; }
+.ds-rules { margin: 0; padding-left: 1.1em; display: grid; gap: var(--space-3); font-size: var(--text-body-sm-size); color: var(--color-text-muted); } .ds-rules b { color: var(--color-text); } .ds-sec .ds-table + .ds-note { margin-top: var(--space-2); }
+.ds-table { overflow-x: auto; border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.ds-table table { width: 100%; border-collapse: collapse; font-size: var(--text-body-sm-size); }
+.ds-table th, .ds-table td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--color-border); vertical-align: middle; }
+.ds-table th { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--color-text-subtle); background: var(--color-bg-subtle); font-weight: 600; }
+.ds-table tr:last-child td { border-bottom: 0; }
+.ds-table code, .ds-code { font: 12px/1.4 var(--font-mono); color: var(--color-text-muted); }
+.ds-num { font-variant-numeric: tabular-nums; }
+
+.logo-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.logo-tile { border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; display: grid; grid-template-rows: 1fr auto; }
+.logo-tile__art { min-height: 180px; display: grid; place-items: center; padding: var(--space-6); }
+.logo-tile__art img { max-height: 88px; width: auto; }
+.logo-tile__cap { padding: var(--space-3) var(--space-4); border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; gap: var(--space-3); font-size: var(--text-body-sm-size); background: var(--color-surface); }
+.bg-white { background: #fff; } .bg-nori { background: #141715; } .bg-red { background: #E41E23; } .bg-rice { background: #F1F2F0; }
+.clear { position: relative; display: inline-block; padding: 26px; background: repeating-linear-gradient(45deg, rgba(228,30,35,.08) 0 6px, transparent 6px 12px); border: 1px dashed var(--color-brand); }
+.clear img { height: 64px; background: #fff; }
+.donts { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+.dont { border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; }
+.dont__art { height: 110px; display: grid; place-items: center; background: #fff; position: relative; overflow: hidden; }
+.dont__art img { height: 40px; width: auto; }
+.dont__art::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top right, transparent calc(50% - 1px), var(--color-error) calc(50% - 1px) calc(50% + 1px), transparent calc(50% + 1px)); opacity: .6; }
+.dont p { padding: var(--space-2) var(--space-3); font-size: var(--text-caption-size); color: var(--color-text-muted); }
+.icon-app { display: flex; gap: var(--space-5); flex-wrap: wrap; align-items: flex-end; }
+.icon-app figure { display: grid; gap: var(--space-2); justify-items: center; }
+
+.swatches { display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); }
+.sw { border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border); font-size: 12px; background: var(--color-surface); }
+.sw i { display: block; height: 52px; }
+.sw div { padding: 6px 8px; display: grid; }
+.sw code { font: 11px/1.3 var(--font-mono); color: var(--color-text-subtle); }
+.theme-pair { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.theme-col { border-radius: var(--radius-lg); padding: var(--space-4); border: 1px solid var(--color-border); }
+.tok { display: grid; grid-template-columns: 28px 1fr auto; gap: var(--space-2); align-items: center; padding-block: 5px; font-size: 13px; }
+.tok i { width: 28px; height: 28px; border-radius: 6px; border: 1px solid rgba(128,128,128,.25); }
+.tok code { font: 11px/1 var(--font-mono); opacity: .7; }
+.pass { color: var(--color-success); font-weight: 700; }
+.fail { color: var(--color-error); font-weight: 700; }
+.chip-sample { display: inline-flex; align-items: center; justify-content: center; min-width: 64px; height: 28px; padding: 0 8px; border-radius: 6px; font-weight: 600; font-size: 13px; }
+
+.type-row { display: grid; grid-template-columns: 160px 1fr; gap: var(--space-4); align-items: baseline; padding-block: var(--space-4); border-bottom: 1px solid var(--color-border); }
+.type-row:last-child { border-bottom: 0; }
+@media (max-width: 767px) { .type-row { grid-template-columns: 1fr; gap: var(--space-1); } }
+
+.space-bar { display: flex; align-items: center; gap: var(--space-3); font-size: 13px; }
+.space-bar i { display: block; height: 16px; background: var(--color-brand); border-radius: 2px; }
+.radius-tile { width: 88px; height: 88px; background: var(--color-surface-sunken); border: 1px solid var(--color-border-strong); display: grid; place-items: end start; padding: 6px; font: 11px var(--font-mono); color: var(--color-text-muted); }
+.shadow-tile { width: 140px; height: 96px; background: var(--color-surface-raised); border-radius: var(--radius-lg); display: grid; place-items: center; font: 12px var(--font-mono); color: var(--color-text-muted); }
+.grid-demo { display: grid; gap: var(--layout-gutter-sm); grid-template-columns: repeat(4, 1fr); }
+.grid-demo span { height: 64px; background: var(--color-brand-soft); border: 1px dashed var(--color-brand); border-radius: 4px; }
+@media (min-width: 768px) { .grid-demo { grid-template-columns: repeat(8, 1fr); gap: var(--layout-gutter-md); } }
+@media (min-width: 1280px) { .grid-demo { grid-template-columns: repeat(12, 1fr); gap: var(--layout-gutter-lg); } }
+.grid-demo span:nth-child(n+5) { display: none; }
+@media (min-width: 768px) { .grid-demo span:nth-child(n+5) { display: block; } .grid-demo span:nth-child(n+9) { display: none; } }
+@media (min-width: 1280px) { .grid-demo span:nth-child(n+9) { display: block; } }
+
+.icons { display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
+.icons figure { display: grid; justify-items: center; gap: 8px; padding: var(--space-4) var(--space-2); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-align: center; }
+.icons figcaption { font: 11px/1.3 var(--font-mono); color: var(--color-text-subtle); word-break: break-all; }
+.icons .icon { width: 28px; height: 28px; }
+.icons--cat .icon { width: 32px; height: 32px; color: var(--color-brand-text); }
+
+.state-grid { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); align-items: end; }
+.state-grid figure { display: grid; gap: var(--space-2); justify-items: start; }
+.fake-focus { outline: var(--border-focus) solid var(--color-focus) !important; outline-offset: 3px; }
+.input.fake-focus { outline: none !important; border-color: var(--color-text); box-shadow: 0 0 0 var(--border-focus) var(--color-focus); }
+
+.demo-cards { display: grid; gap: var(--space-4); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 768px) { .demo-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1280px) { .demo-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.motion-demo { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.motion-card { border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4); display: grid; gap: var(--space-3); }
+.motion-track { position: relative; height: 40px; background: var(--color-surface-sunken); border-radius: var(--radius-sm); overflow: hidden; }
+.motion-dot { position: absolute; left: 4px; top: 4px; width: 32px; height: 32px; border-radius: 50%; background: var(--color-brand); }
+.motion-card.play .motion-dot { left: calc(100% - 36px); }
+.sum-slider { width: 100%; accent-color: var(--color-brand); }
+.ds-phone { width: 100%; max-width: 375px; border: 10px solid var(--palette-nori-900); border-radius: 36px; overflow: hidden; background: var(--color-bg); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержанию</a>
+
+<header class="header">
+  <div class="container header__row">
+    <a class="header__logo" href="#top" aria-label="Фьюжн — на главную">
+      <img class="logo-full" src="assets/brand/logo.svg" alt="Фьюжн" width="193" height="40" data-logo>
+      <img class="logo-mark" src="assets/brand/mark.svg" alt="Фьюжн" width="32" height="32">
+    </a>
+    <button class="addr-chip" type="button" aria-label="Изменить адрес или точку самовывоза">
+      <svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-pin"/></svg>
+      <span class="addr-chip__text"><span class="addr-chip__title">Балаково, ул. Ленина, 122</span><span class="addr-chip__sub">Доставим за ~60 мин · бесплатно</span></span>
+      <svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons/sprite.svg#i-chevron-down"/></svg>
+    </button>
+    <nav class="header__nav" aria-label="Основное меню"><a href="#components" aria-current="page">Меню</a><a href="#components">Акции</a><a href="#components">Доставка</a><a href="#components">Контакты</a></nav>
+    <span class="header__spacer"></span>
+    <a class="header__phone" href="tel:+70000000001">+7 (000) 000-00-01<small>Жилгород, 12:00–23:00</small></a>
+    <div class="header__actions">
+      <button class="btn btn--ghost btn--icon hide-sm" type="button" data-theme-toggle aria-label="Включить тёмную тему"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-moon"/></svg></button>
+      <button class="btn btn--ghost btn--icon" type="button" data-open-search aria-label="Поиск по меню"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-search"/></svg></button>
+      <a class="btn btn--ghost btn--icon hide-sm" href="#components" aria-label="Профиль"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-user"/></svg></a>
+      <a class="btn header__cart" href="#cart-demo" data-cart-target><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-cart"/></svg><span data-cart-sum>0&#8239;₽</span></a>
+      <button class="btn btn--ghost btn--icon" type="button" data-open-drawer aria-label="Открыть меню"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<nav class="ds-toc" aria-label="Разделы дизайн-системы">
+  <div class="container chips" data-scrollspy>
+    <a class="chip" href="#logo">Логотип</a><a class="chip" href="#color">Цвет</a><a class="chip" href="#type">Типографика</a><a class="chip" href="#layout">Сетка и отступы</a><a class="chip" href="#icons">Иконки</a><a class="chip" href="#components">Компоненты</a><a class="chip" href="#motion">Анимация</a>
+  </div>
+</nav>
+
+<main id="main">
+<section class="container ds-hero" id="top">
+  <p class="t-overline t-brand">Редизайн «Фьюжн» · этап 3 из 4 · на согласование</p>
+  <h1 class="t-display">Дизайн-система</h1>
+  <p class="t-body-lg t-muted prose">Здесь собраны логотип, токены, типографика, иконки и все компоненты со своими состояниями. Это не макет: страница подключает те же <code class="ds-code">tokens.css</code>, <code class="ds-code">components.css</code> и <code class="ds-code">ui.js</code>, на которых будет собран сайт. Компоненты живые — их можно нажимать, вводить телефон, добавлять блюда в корзину. Тёмная тема включается кнопкой в шапке на компьютере или следует настройкам телефона.</p>
+  <div class="cluster"><span class="status" data-work-status></span><span class="t-caption t-muted">— этот статус считается по текущему времени</span></div>
+</section>
+
+<!-- ================= ЛОГОТИП ================= -->
+<section class="container ds-sec" id="logo">
+  <h2 class="t-h2">Логотип</h2>
+  <p class="ds-lead">Знак «Срез» — буква Ф как ролл на палочке, со следом ножа на кольце. Надпись «Лезвие» нарисована вручную: заглавная «Ф» и строчные, высокий контраст, клиновидные засечки. Знак ровно той же высоты, что и заглавная «Ф». Все файлы лежат в <code class="ds-code">assets/brand/</code>.</p>
+  <h3 class="t-h3 ds-sub">Версии</h3>
+  <div class="logo-grid">
+    <div class="logo-tile"><div class="logo-tile__art bg-white"><img src="assets/brand/logo.svg" alt="Основной логотип" width="317" height="88"></div><div class="logo-tile__cap"><b>Основной</b><span class="ds-code">logo.svg</span></div></div>
+    <div class="logo-tile"><div class="logo-tile__art bg-nori"><img src="assets/brand/logo-on-dark.svg" alt="Логотип на тёмном фоне" width="317" height="88"></div><div class="logo-tile__cap"><b>На тёмном</b><span class="ds-code">logo-on-dark.svg</span></div></div>
+    <div class="logo-tile"><div class="logo-tile__art bg-white"><img src="assets/brand/logo-vertical.svg" alt="Вертикальный логотип" width="108" height="88"></div><div class="logo-tile__cap"><b>Вертикальный</b><span class="ds-code">logo-vertical.svg</span></div></div>
+    <div class="logo-tile"><div class="logo-tile__art bg-rice"><img src="assets/brand/logo-mono-black.svg" alt="Монохромный логотип" width="317" height="88"></div><div class="logo-tile__cap"><b>Один цвет</b><span class="ds-code">logo-mono-black.svg</span></div></div>
+    <div class="logo-tile"><div class="logo-tile__art bg-red"><img src="assets/brand/logo-mono-white.svg" alt="Белый логотип на красном" width="317" height="88"></div><div class="logo-tile__cap"><b>Белый</b><span class="ds-code">logo-mono-white.svg</span></div></div>
+    <div class="logo-tile"><div class="logo-tile__art bg-white"><img src="assets/brand/mark.svg" alt="Знак" width="88" height="88"></div><div class="logo-tile__cap"><b>Знак</b><span class="ds-code">mark.svg · mark-light.svg</span></div></div>
+  </div>
+  <h3 class="t-h3 ds-sub">Иконка приложения и фавикон</h3>
+  <div class="ds-box icon-app">
+    <figure><img src="assets/brand/icon-512.png" alt="Иконка приложения" width="120" height="120" style="border-radius:27px"><figcaption class="ds-label">iOS · app-icon.svg</figcaption></figure>
+    <figure><img src="assets/brand/icon-maskable-512.png" alt="Иконка Android" width="96" height="96" style="border-radius:50%"><figcaption class="ds-label">Android · maskable</figcaption></figure>
+    <figure><img src="assets/brand/apple-touch-icon.png" alt="" width="60" height="60" style="border-radius:13px"><figcaption class="ds-label">180 px</figcaption></figure>
+    <figure><img src="assets/brand/favicon-32.png" alt="" width="32" height="32"><figcaption class="ds-label">32 px</figcaption></figure>
+    <figure><img src="assets/brand/favicon-16.png" alt="" width="16" height="16"><figcaption class="ds-label">16 px</figcaption></figure>
+    <figure><img src="assets/brand/favicon.svg" alt="" width="32" height="32"><figcaption class="ds-label">favicon.svg (сам меняет цвет в тёмной теме)</figcaption></figure>
+  </div>
+  <h3 class="t-h3 ds-sub">Охранное поле и минимальный размер</h3>
+  <div class="ds-cols">
+    <div class="ds-box"><div class="clear"><img src="assets/brand/logo.svg" alt="Логотип с охранным полем" width="230" height="64"></div><p class="ds-note">Охранное поле — высота красной начинки знака со всех сторон. В него не заходят текст, края фото и другие логотипы.</p></div>
+    <div class="ds-box"><div class="stack" style="--stack-gap:var(--space-3)"><img src="assets/brand/logo.svg" alt="" height="40" width="193" style="height:40px;width:auto"><span class="ds-label">полный логотип — от 40 px в высоту</span><img src="assets/brand/mark.svg" alt="" width="16" height="16"><span class="ds-label">знак — от 16 px</span></div><p class="ds-note">Ниже 40 px тонкие линии надписи пропадают — используйте только знак. В паре с надписью — облегчённый знак, отдельно — плотный.</p></div>
+  </div>
+  <h3 class="t-h3 ds-sub">Так нельзя</h3>
+  <div class="donts">
+    <div class="dont"><div class="dont__art"><img src="assets/brand/logo.svg" alt="" style="transform:scaleX(1.5)" width="144" height="40"></div><p>Растягивать и сжимать</p></div>
+    <div class="dont"><div class="dont__art"><img src="assets/brand/logo.svg" alt="" style="filter:hue-rotate(140deg)" width="144" height="40"></div><p>Менять цвета</p></div>
+    <div class="dont"><div class="dont__art"><img src="assets/brand/logo.svg" alt="" style="transform:rotate(-12deg)" width="144" height="40"></div><p>Поворачивать</p></div>
+    <div class="dont"><div class="dont__art" style="background:#F07A7E"><img src="assets/brand/logo.svg" alt="" width="144" height="40"></div><p>Ставить на пёстрый или неконтрастный фон</p></div>
+    <div class="dont"><div class="dont__art"><img src="assets/brand/logo.svg" alt="" style="filter:drop-shadow(3px 3px 2px rgba(0,0,0,.5))" width="144" height="40"></div><p>Добавлять тени и эффекты</p></div>
+  </div>
+</section>
+
+<!-- ================= ЦВЕТ ================= -->
+<section class="container ds-sec" id="color">
+  <h2 class="t-h2">Цвет</h2>
+  <p class="ds-lead">Фирменный красный #E41E23 остался прежним. Нейтральные цвета — «нори»: серые с лёгким зелёным оттенком, чтобы рядом с красным и с едой не было мертвенно-серого. Палитра и таблица контраста ниже строятся прямо из <code class="ds-code">tokens.json</code>.</p>
+  <h3 class="t-h3 ds-sub">Базовая палитра</h3>
+  <div id="palette" class="stack"><p class="t-muted">Загружаю палитру из tokens.json…</p></div>
+  <h3 class="t-h3 ds-sub">Смысловые цвета: светлая и тёмная темы</h3>
+  <div class="theme-pair" id="themes"></div>
+  <h3 class="t-h3 ds-sub">Контраст по WCAG AA</h3>
+  <p class="ds-note" style="margin:0 0 var(--space-4)">Текст — не меньше 4,5 : 1, крупные графические элементы и рамки полей — не меньше 3 : 1. Проверка запускается скриптом при каждой сборке токенов.</p>
+  <div class="ds-table"><table><thead><tr><th>Тема</th><th>Где используется</th><th>Пример</th><th>Контраст</th><th>Нужно</th></tr></thead><tbody id="contrast"></tbody></table></div>
+  <p class="ds-note">Еда на фото: фон карточек — белый или «рис», без цветных подложек и наложений, чтобы не искажать цвет лосося и зелени. Красный используется точечно: кнопка, цена-акцент, начинка в знаке.</p>
+</section>
+
+<!-- ================= ТИПОГРАФИКА ================= -->
+<section class="container ds-sec" id="type">
+  <h2 class="t-h2">Типографика</h2>
+  <p class="ds-lead">Заголовки — Cormorant Garamond: контраст и острые засечки, как у надписи логотипа. Интерфейс, состав и цены — Golos Text: нейтральный и хорошо читается мелко. Размеры плавно меняются от телефона (375 px) до десктопа (1440 px).</p>
+  <div class="ds-box">
+    <div class="type-row"><span class="ds-label">display · 40→64</span><p class="t-display">Фьюжн сет</p></div>
+    <div class="type-row"><span class="ds-label">h1 · 34→52</span><p class="t-h1">Опалённые роллы</p></div>
+    <div class="type-row"><span class="ds-label">h2 · 28→40</span><p class="t-h2">Хиты недели</p></div>
+    <div class="type-row"><span class="ds-label">h3 · 24→30</span><p class="t-h3">Сет для компании</p></div>
+    <div class="type-row"><span class="ds-label">h3 italic</span><p class="t-h3 t-italic">История блюда — курсивом</p></div>
+    <div class="type-row"><span class="ds-label">h4 · Golos 600 · 18→20</span><p class="t-h4">Филадельфия</p></div>
+    <div class="type-row"><span class="ds-label">body-lg · 17→18</span><p class="t-body-lg">Бесплатная доставка по городу при заказе от 500 ₽, в течение часа.</p></div>
+    <div class="type-row"><span class="ds-label">body · 15→16</span><p class="t-body">Рис, лосось, креветка, сливочный сыр, авокадо, огурец, японский майонез, омлет.</p></div>
+    <div class="type-row"><span class="ds-label">body-sm · 14</span><p class="t-body-sm t-muted">Состав блюда в карточке, подписи, вторичный текст.</p></div>
+    <div class="type-row"><span class="ds-label">caption · 12→13</span><p class="t-caption t-muted">281 г · (8 шт)</p></div>
+    <div class="type-row"><span class="ds-label">overline · 12</span><p class="t-overline t-brand">Новое в меню</p></div>
+  </div>
+  <h3 class="t-h3 ds-sub">Цены</h3>
+  <div class="ds-box ds-row" style="gap:var(--space-8)">
+    <div class="stack" style="--stack-gap:4px"><span class="price-sm">340&#8239;₽</span><span class="ds-label">price-sm · допродажа</span></div>
+    <div class="stack" style="--stack-gap:4px"><span class="price">550&#8239;₽</span><span class="ds-label">price · карточка</span></div>
+    <div class="stack" style="--stack-gap:4px"><span class="price-lg">2&#8239;040&#8239;₽<span class="price-old">2&#8239;200&#8239;₽</span></span><span class="ds-label">price-lg · карточка блюда</span></div>
+    <div class="stack" style="--stack-gap:4px"><span class="price-total">3&#8239;254&#8239;₽</span><span class="ds-label">price-total · итог</span></div>
+  </div>
+  <p class="ds-note">Цены — без копеек: «80 ₽», а не «80.00 ₽». Табличные цифры, чтобы суммы не прыгали при пересчёте. Между числом и ₽ и в разрядах — узкий неразрывный пробел.</p>
+</section>
+
+<!-- ================= СЕТКА ================= -->
+<section class="container ds-sec" id="layout">
+  <h2 class="t-h2">Сетка и отступы</h2>
+  <p class="ds-lead">Всё кратно 4 px. Колонок 4 на телефоне, 8 на планшете, 12 на ноутбуке и десктопе. Тап-зоны — не меньше 44 px. Отступы берутся только из шкалы токенов <code class="ds-code">--space-*</code>, произвольных значений в вёрстке нет.</p>
+
+  <div class="ds-cols" style="margin-bottom:var(--space-6)">
+    <div class="ds-box"><h3 class="t-h4" style="margin-bottom:var(--space-3)">Правила</h3>
+      <ul class="ds-rules">
+        <li><b>Внутри меньше, чем снаружи.</b> Отступ внутри компонента всегда меньше, чем расстояние между компонентами, а оно меньше, чем между секциями: 4–20 → 12–32 → 32–80.</li>
+        <li><b>Промежутки задаёт родитель.</b> Сетки и стопки используют <code class="ds-code">gap</code>; внешние <code class="ds-code">margin</code> у компонентов не ставим.</li>
+        <li><b>Поля контейнера = поля сетки.</b> Контент не прилипает к краю экрана: 16 / 24 / 40 px.</li>
+        <li><b>Меньше 44 px — только визуально.</b> Если кнопка меньше (сердечко, «Добавить» в карточке), её зона нажатия на телефоне всё равно расширена до 44 px.</li>
+      </ul></div>
+    <div class="ds-box"><h3 class="t-h4" style="margin-bottom:var(--space-4)">Шкала</h3><div class="stack" style="--stack-gap:6px" id="spaces"></div></div>
+  </div>
+
+  <div class="ds-box"><div class="grid-demo" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><p class="ds-note">Сетка этого экрана — поменяйте ширину окна.</p></div>
+
+  <h3 class="t-h3" style="margin:var(--space-10) 0 var(--space-3)">Колоночная сетка</h3>
+  <div class="ds-table"><table><thead><tr><th>Экран</th><th>Ширина</th><th>Колонки</th><th>Поля</th><th>Промежуток</th><th>Карточек блюд в ряд</th></tr></thead><tbody>
+    <tr><td>Телефон</td><td class="ds-num">375+</td><td class="ds-num">4</td><td class="ds-num">16</td><td class="ds-num">12</td><td class="ds-num">2</td></tr>
+    <tr><td>Планшет</td><td class="ds-num">768+</td><td class="ds-num">8</td><td class="ds-num">24</td><td class="ds-num">16</td><td class="ds-num">3</td></tr>
+    <tr><td>Ноутбук</td><td class="ds-num">1280+</td><td class="ds-num">12</td><td class="ds-num">40</td><td class="ds-num">24</td><td class="ds-num">4</td></tr>
+    <tr><td>Десктоп</td><td class="ds-num">1440+</td><td>12, контейнер 1280 по центру</td><td>авто</td><td class="ds-num">24</td><td class="ds-num">4</td></tr>
+  </tbody></table></div>
+  <p class="ds-note">Токены: <code class="ds-code">--layout-container</code> 1280, <code class="ds-code">--layout-margin-sm/md/lg</code> 16/24/40, <code class="ds-code">--layout-gutter-sm/md/lg</code> 12/16/24, <code class="ds-code">--layout-columns-sm/md/lg</code> 4/8/12.</p>
+
+  <h3 class="t-h3" style="margin:var(--space-10) 0 var(--space-3)">Шкала отступов и где она применяется</h3>
+  <div class="ds-table"><table><thead><tr><th>Токен</th><th>px</th><th>Где используется</th></tr></thead><tbody>
+    <tr><td><code class="ds-code">--space-1</code></td><td class="ds-num">4</td><td>Название блюда ↔ вес; иконка ↔ текст в метке; между плашками шкалы скидок</td></tr>
+    <tr><td><code class="ds-code">--space-2</code></td><td class="ds-num">8</td><td>Подпись поля ↔ поле; иконка ↔ текст в кнопке; заголовок страницы ↔ подзаголовок; ряд меток и чипов; фото в галерее</td></tr>
+    <tr><td><code class="ds-code">--space-3</code></td><td class="ds-num">12</td><td>Сетка карточек и плиток на телефоне; ряды кнопок; верх тела карточки блюда; поля кнопки «маленькая»</td></tr>
+    <tr><td><code class="ds-code">--space-4</code></td><td class="ds-num">16</td><td>Поля контейнера на телефоне; плитка раздела; поля в форме; стопка по умолчанию; поле ввода по горизонтали; сетка на планшете</td></tr>
+    <tr><td><code class="ds-code">--space-5</code></td><td class="ds-num">20</td><td>Карточка кафе, условие доставки, итог заказа, ссылка на отзывы; поля обычной кнопки</td></tr>
+    <tr><td><code class="ds-code">--space-6</code></td><td class="ds-num">24</td><td>Поля контейнера на планшете; всплывающее окно; заголовок секции ↔ её содержимое; сетка карточек на ноутбуке; поля большой кнопки</td></tr>
+    <tr><td><code class="ds-code">--space-8</code></td><td class="ds-num">32</td><td>Заголовок страницы ↔ контент; блоки главной сверху и снизу; колонки форм и адреса; первый экран сверху</td></tr>
+    <tr><td><code class="ds-code">--space-10</code></td><td class="ds-num">40</td><td>Поля контейнера на ноутбуке; первый экран снизу; колонки SEO-текста; пустые состояния</td></tr>
+    <tr><td><code class="ds-code">--space-12</code></td><td class="ds-num">48</td><td>Секция сверху и снизу; низ страницы; колонки корзины на ноутбуке; подвал внутри</td></tr>
+    <tr><td><code class="ds-code">--space-16</code></td><td class="ds-num">64</td><td>Резерв для промо-лендингов, на сайте сейчас не используется</td></tr>
+    <tr><td><code class="ds-code">--space-20</code></td><td class="ds-num">80</td><td>Секция на ноутбуке и десктопе; расстояние от контента до подвала</td></tr>
+    <tr><td><code class="ds-code">--space-24</code></td><td class="ds-num">96</td><td>Низ подвала на телефоне и планшете — место под плавающую кнопку корзины</td></tr>
+  </tbody></table></div>
+
+  <h3 class="t-h3" style="margin:var(--space-10) 0 var(--space-3)">Вертикальный ритм страницы</h3>
+  <div class="ds-table"><table><thead><tr><th>Элемент</th><th>Телефон</th><th>Планшет</th><th>Ноутбук и десктоп</th></tr></thead><tbody>
+    <tr><td>Шапка, высота</td><td class="ds-num">56</td><td class="ds-num">56</td><td class="ds-num">72</td></tr>
+    <tr><td>Первый экран главной, сверху / снизу</td><td class="ds-num">16 / 40</td><td class="ds-num">32 / 40</td><td class="ds-num">32 / 40</td></tr>
+    <tr><td>Страница, сверху / снизу</td><td class="ds-num">24 / 48</td><td class="ds-num">24 / 48</td><td class="ds-num">24 / 48</td></tr>
+    <tr><td>Хлебные крошки ↔ заголовок</td><td class="ds-num">20</td><td class="ds-num">20</td><td class="ds-num">20</td></tr>
+    <tr><td>Заголовок страницы ↔ подзаголовок</td><td class="ds-num">8</td><td class="ds-num">8</td><td class="ds-num">8</td></tr>
+    <tr><td>Заголовок страницы ↔ контент</td><td class="ds-num">32</td><td class="ds-num">32</td><td class="ds-num">32</td></tr>
+    <tr><td>Секция, сверху и снизу</td><td class="ds-num">48</td><td class="ds-num">48</td><td class="ds-num">80</td></tr>
+    <tr><td>Блок главной, сверху и снизу</td><td class="ds-num">32</td><td class="ds-num">32</td><td class="ds-num">32</td></tr>
+    <tr><td>Заголовок секции ↔ содержимое</td><td class="ds-num">24</td><td class="ds-num">24</td><td class="ds-num">24</td></tr>
+    <tr><td>Контент ↔ подвал</td><td class="ds-num">80</td><td class="ds-num">80</td><td class="ds-num">80</td></tr>
+    <tr><td>Подвал, сверху / снизу</td><td class="ds-num">48 / 96</td><td class="ds-num">48 / 96</td><td class="ds-num">48 / 48</td></tr>
+  </tbody></table></div>
+
+  <h3 class="t-h3" style="margin:var(--space-10) 0 var(--space-3)">Отступы внутри компонентов</h3>
+  <div class="ds-table"><table><thead><tr><th>Компонент</th><th>Внутренний отступ</th><th>Промежуток между частями</th><th>Скругление</th></tr></thead><tbody>
+    <tr><td>Кнопка обычная / большая / маленькая</td><td>0 × 20 / 0 × 24 / 0 × 12</td><td class="ds-num">8</td><td class="ds-num">10 / 14 / 6</td></tr>
+    <tr><td>Поле ввода</td><td>0 × 16, с иконкой слева 44</td><td>подпись ↔ поле 8</td><td class="ds-num">10</td></tr>
+    <tr><td>Чип и метка-фильтр</td><td>0 × 16</td><td class="ds-num">6</td><td>pill</td></tr>
+    <tr><td>Метка на фото блюда</td><td>0 × 7</td><td>иконка ↔ текст 4; между метками 6</td><td class="ds-num">4</td></tr>
+    <tr><td>Карточка блюда</td><td>тело 12 сверху, 4 по бокам</td><td class="ds-num">4</td><td class="ds-num">14</td></tr>
+    <tr><td>Плитка раздела меню</td><td>16; на ноутбуке 20 × 24</td><td>значок ↔ название не меньше 16</td><td class="ds-num">14</td></tr>
+    <tr><td>Карточка кафе</td><td class="ds-num">20</td><td class="ds-num">16</td><td class="ds-num">14</td></tr>
+    <tr><td>Условие доставки</td><td class="ds-num">20</td><td class="ds-num">8</td><td class="ds-num">14</td></tr>
+    <tr><td>Вариант выбора (время, оплата)</td><td>12 × 16</td><td class="ds-num">12</td><td class="ds-num">10</td></tr>
+    <tr><td>Итог заказа</td><td class="ds-num">20</td><td class="ds-num">16</td><td class="ds-num">14</td></tr>
+    <tr><td>Всплывающее окно</td><td class="ds-num">24</td><td class="ds-num">16</td><td class="ds-num">20</td></tr>
+    <tr><td>Пустое состояние</td><td>40 × 16</td><td class="ds-num">12</td><td>—</td></tr>
+  </tbody></table></div>
+
+  <h3 class="t-h3" style="margin:var(--space-10) 0 var(--space-3)">Раскладки контента</h3>
+  <div class="ds-table"><table><thead><tr><th>Блок</th><th>Телефон</th><th>Планшет</th><th>Ноутбук и десктоп</th><th>Промежуток</th></tr></thead><tbody>
+    <tr><td>Карточки блюд</td><td>2 колонки</td><td>3 колонки</td><td>4 колонки</td><td>12 / 16 / 24</td></tr>
+    <tr><td>Плитки разделов меню</td><td>2 колонки</td><td>3 колонки</td><td>3 колонки</td><td>12 / 16 / 16</td></tr>
+    <tr><td>Карточки кафе</td><td colspan="3">столько колонок, сколько помещается при ширине от 300 px</td><td class="ds-num">16</td></tr>
+    <tr><td>Условия доставки</td><td colspan="3">столько колонок, сколько помещается при ширине от 230 px</td><td class="ds-num">12</td></tr>
+    <tr><td>Ссылки на отзывы</td><td colspan="3">столько колонок, сколько помещается при ширине от 280 px</td><td class="ds-num">12</td></tr>
+    <tr><td>Фото залов</td><td colspan="3">столько колонок, сколько помещается при ширине от 220 px</td><td class="ds-num">8</td></tr>
+    <tr><td>Первый экран главной</td><td>текст под знаком</td><td colspan="2">текст и знак рядом, 1,15 : 1</td><td class="ds-num">32</td></tr>
+    <tr><td>Корзина и оформление</td><td colspan="2">одна колонка, итог под списком</td><td>список + итог 400 px, итог прилипает при прокрутке</td><td>32 / 48</td></tr>
+    <tr><td>Выбор адреса</td><td colspan="2">форма, под ней карта</td><td>форма и карта рядом 1 : 1</td><td class="ds-num">32</td></tr>
+    <tr><td>Текст «О кафе» на главной</td><td colspan="2">заголовок над текстом</td><td>заголовок 5 : текст 7 (с 1024 px)</td><td>16 / 40</td></tr>
+    <tr><td>Адреса в подвале</td><td>1 колонка</td><td colspan="2">2 × 2 (с 480 px)</td><td>24 × 20</td></tr>
+    <tr><td>«С этим берут»</td><td colspan="3">горизонтальная лента, карточка от 240 px</td><td class="ds-num">12</td></tr>
+  </tbody></table></div>
+
+  <h3 class="t-h3" style="margin:var(--space-10) 0 var(--space-3)">Высоты элементов управления</h3>
+  <div class="ds-table"><table><thead><tr><th>Высота</th><th>Что</th></tr></thead><tbody>
+    <tr><td class="ds-num">36</td><td>Маленькая кнопка, «Добавить» в карточке, подразделы меню — только на компьютере; на сенсорных экранах зона нажатия 44</td></tr>
+    <tr><td class="ds-num">40</td><td>Чипы-фильтры и переключатели на компьютере</td></tr>
+    <tr><td class="ds-num">44</td><td>Обычная кнопка, кнопки-иконки, любая тап-зона на телефоне (<code class="ds-code">--layout-tap-min</code>)</td></tr>
+    <tr><td class="ds-num">48</td><td>Поле ввода, вкладки</td></tr>
+    <tr><td class="ds-num">52</td><td>Разделы в навигации меню, пункты бокового меню</td></tr>
+    <tr><td class="ds-num">56</td><td>Большая кнопка и большое поле, варианты выбора, плавающая корзина, шапка на телефоне</td></tr>
+  </tbody></table></div>
+
+  <h3 class="t-h3" style="margin:var(--space-10) 0 var(--space-3)">Брейкпоинты: что меняется</h3>
+  <div class="ds-table"><table><thead><tr><th>С ширины</th><th>Что происходит</th></tr></thead><tbody>
+    <tr><td class="ds-num">480</td><td>Адреса в подвале встают в сетку 2 × 2</td></tr>
+    <tr><td class="ds-num">768</td><td>8 колонок, поля 24; 3 карточки блюд; первый экран в две колонки; плавающая корзина шириной 360 справа; адрес в шапке снова с подписью и стрелкой (с 421 px)</td></tr>
+    <tr><td class="ds-num">1024</td><td>Плавающая корзина скрывается — корзина есть в шапке; текст «О кафе» в две колонки; ручной перенос строки в подзаголовке первого экрана</td></tr>
+    <tr><td class="ds-num">1280</td><td>12 колонок, поля 40; 4 карточки блюд; шапка 72 с полной навигацией и логотипом; секции по 80; корзина и адрес в две колонки; фильтры меню в одну строку</td></tr>
+    <tr><td class="ds-num">1440</td><td>Контейнер 1280 центрируется, в шапке появляется телефон выбранного кафе</td></tr>
+  </tbody></table></div>
+
+  <div class="ds-cols" style="margin-top:var(--space-8)">
+    <div class="ds-box"><h3 class="t-h4" style="margin-bottom:var(--space-4)">Скругления</h3><div class="ds-row">
+      <div class="radius-tile" style="border-radius:var(--radius-xs)">xs 4</div><div class="radius-tile" style="border-radius:var(--radius-sm)">sm 6</div><div class="radius-tile" style="border-radius:var(--radius-md)">md 10</div><div class="radius-tile" style="border-radius:var(--radius-lg)">lg 14</div><div class="radius-tile" style="border-radius:var(--radius-xl)">xl 20</div></div>
+      <p class="ds-note">Скругления сдержанные: характер бренда острый. Метки — 4, маленькие кнопки — 6, кнопки и поля — 10, карточки — 14, окна — 20, чипы — капсула.</p></div>
+    <div class="ds-box ds-box--sunk"><h3 class="t-h4" style="margin-bottom:var(--space-4)">Тени</h3><div class="ds-row"><div class="shadow-tile" style="box-shadow:var(--shadow-sm)">sm</div><div class="shadow-tile" style="box-shadow:var(--shadow-md)">md</div><div class="shadow-tile" style="box-shadow:var(--shadow-lg)">lg</div><div class="shadow-tile" style="box-shadow:var(--shadow-xl)">xl</div></div>
+      <p class="ds-note">sm — переключатели и сердечко, md — наведение на карточку, lg — плавающая корзина, xl — окна. Линии: 1 px — разделители, 2 px — фокус.</p></div>
+  </div>
+</section>
+
+<!-- ================= ИКОНКИ ================= -->
+<section class="container ds-sec" id="icons">
+  <h2 class="t-h2">Иконки</h2>
+  <p class="ds-lead">Два стиля в одной сетке 24 × 24. Категории и метки — залитые силуэты с деталями «на просвет»: их видно издалека и в 24 px, как пиктограммы на упаковке. Интерфейс — линия 1,75 px с острыми углами, чтобы не спорить с едой. Цвет наследуется от текста. Все иконки — в одном спрайте <code class="ds-code">assets/icons/sprite.svg</code>.</p>
+  <h3 class="t-h3 ds-sub">Категории меню</h3>
+  <div class="icons icons--cat" id="cat-icons"></div>
+  <h3 class="t-h3 ds-sub">Метки</h3>
+  <div class="icons" id="tag-icons"></div>
+  <h3 class="t-h3 ds-sub">Интерфейс</h3>
+  <div class="icons" id="ui-icons"></div>
+  <h3 class="t-h3 ds-sub">Блюдо без фото</h3>
+  <div class="ds-cols"><div class="dish" style="max-width:280px"><div class="dish__media"><span class="ph" role="img" aria-label="Фото скоро появится"></span></div><div class="dish__body"><h3 class="dish__title">Соус ореховый</h3><p class="dish__meta">50 г</p></div></div>
+  <p class="ds-note">Заглушка в фирменном стиле: узор из срезов роллов и облегчённый знак. Цвета берутся из темы, поэтому она работает и в тёмной теме. 20 позиций сейчас без фото — до фотосъёмки показывается она.</p></div>
+</section>
+
+<!-- ================= КОМПОНЕНТЫ ================= -->
+<section class="container ds-sec" id="components">
+  <h2 class="t-h2">Компоненты</h2>
+  <p class="ds-lead">У каждого компонента есть состояния: обычное, наведение, нажатие, фокус с клавиатуры и недоступное. Ниже они показаны рядом, а живые экземпляры можно потрогать.</p>
+
+  <h3 class="t-h3 ds-sub">Кнопки</h3>
+  <div class="ds-box stack" style="--stack-gap:var(--space-6)">
+    <div class="state-grid">
+      <figure><button class="btn" type="button">Добавить</button><figcaption class="ds-label">default</figcaption></figure>
+      <figure><button class="btn" type="button" style="--btn-bg:var(--color-brand-hover)">Добавить</button><figcaption class="ds-label">hover</figcaption></figure>
+      <figure><button class="btn" type="button" style="--btn-bg:var(--color-brand-active);transform:scale(.97)">Добавить</button><figcaption class="ds-label">active</figcaption></figure>
+      <figure><button class="btn fake-focus" type="button">Добавить</button><figcaption class="ds-label">focus</figcaption></figure>
+      <figure><button class="btn" type="button" disabled>Добавить</button><figcaption class="ds-label">disabled</figcaption></figure>
+      <figure><button class="btn is-loading" type="button" aria-label="Отправляем">Заказать</button><figcaption class="ds-label">loading</figcaption></figure>
+    </div>
+    <div class="ds-row">
+      <button class="btn" type="button">Основная</button>
+      <button class="btn btn--ink" type="button">Тёмная</button>
+      <button class="btn btn--outline" type="button">Контурная</button>
+      <button class="btn btn--soft" type="button">Мягкая</button>
+      <button class="btn btn--ghost" type="button">Прозрачная</button>
+      <button class="btn btn--icon btn--outline" type="button" aria-label="Поиск"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-search"/></svg></button>
+    </div>
+    <div class="ds-row">
+      <button class="btn btn--sm" type="button">Маленькая · 36</button>
+      <button class="btn" type="button">Обычная · 44</button>
+      <button class="btn btn--lg" type="button">Большая · 56 <span class="btn__meta">1&#8239;240&#8239;₽</span></button>
+    </div>
+  </div>
+
+  <h3 class="t-h3 ds-sub">Поля, телефон, SMS-код</h3>
+  <div class="ds-cols">
+    <div class="ds-box stack">
+      <div class="field"><label class="field__label" for="f1">Имя</label><input class="input" id="f1" placeholder="Как к вам обращаться"></div>
+      <div class="field"><label class="field__label" for="f2">Улица и дом</label><input class="input fake-focus" id="f2" value="ул. Ленина, 1"><span class="field__hint">focus</span></div>
+      <div class="field"><label class="field__label" for="f3">Квартира</label><input class="input" id="f3" value="4а" aria-invalid="true" aria-describedby="f3e"><span class="field__error" id="f3e"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons/sprite.svg#i-alert"/></svg>Только цифры</span></div>
+      <div class="field"><label class="field__label" for="f4">Город</label><input class="input" id="f4" value="Балаково" disabled><span class="field__hint">disabled — город выбран на первом шаге</span></div>
+      <div class="field"><label class="field__label" for="f5">Комментарий курьеру</label><textarea class="textarea" id="f5" placeholder="Например: домофон не работает, позвоните"></textarea></div>
+    </div>
+    <div class="ds-box stack">
+      <div class="field"><label class="field__label" for="ph">Номер телефона</label><input class="input input--lg input--phone" id="ph" type="tel" data-phone aria-describedby="phe"><span class="field__error" id="phe" hidden><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons/sprite.svg#i-alert"/></svg>Проверьте номер: нужно 10 цифр после +7</span></div>
+      <button class="btn btn--block" type="button" id="ph-next">Получить код</button>
+      <p class="t-caption t-muted">Нажимая «Получить код», вы принимаете <a href="#">пользовательское соглашение</a> и <a href="#">политику конфиденциальности</a>.</p>
+      <div class="divider"></div>
+      <div class="field"><span class="field__label" id="otp-l">Код из SMS <span class="t-muted">(для проверки: 1234)</span></span><div class="otp" data-otp role="group" aria-labelledby="otp-l"><input aria-label="Цифра 1"><input aria-label="Цифра 2"><input aria-label="Цифра 3"><input aria-label="Цифра 4"></div><span class="field__hint" id="otp-timer"></span><span class="field__error" id="otp-err" hidden>Неверный код. Осталось 2 попытки</span></div>
+    </div>
+  </div>
+
+  <h3 class="t-h3 ds-sub">Флажки, радио, выбор</h3>
+  <div class="ds-cols">
+    <div class="ds-box stack" style="--stack-gap:0">
+      <label class="check"><input type="checkbox" checked> Согласен на обработку персональных данных</label>
+      <label class="check"><input type="checkbox"> Получать уведомления об акциях</label>
+      <label class="check"><input type="checkbox" disabled> Недоступно</label>
+      <label class="radio"><input type="radio" name="r" checked> Как можно скорее</label>
+      <label class="radio"><input type="radio" name="r"> Ко времени</label>
+    </div>
+    <div class="ds-box"><fieldset class="choice" style="border:0;padding:0;margin:0"><legend class="field__label" style="margin-bottom:var(--space-2)">Способ оплаты</legend>
+      <label class="choice__item"><input type="radio" name="pay" checked><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-card"/></svg><span class="choice__text"><span class="choice__title">Картой онлайн</span><span class="choice__sub">Альфа-Банк, Apple Pay, Google Pay, СБП</span></span><span class="choice__mark"></span></label>
+      <label class="choice__item"><input type="radio" name="pay"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-card"/></svg><span class="choice__text"><span class="choice__title">Картой курьеру</span></span><span class="choice__mark"></span></label>
+      <label class="choice__item"><input type="radio" name="pay"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-cash"/></svg><span class="choice__text"><span class="choice__title">Наличными</span><span class="choice__sub">Курьер привезёт сдачу</span></span><span class="choice__mark"></span></label>
+    </fieldset></div>
+  </div>
+
+  <h3 class="t-h3 ds-sub">Переключатель «Доставка / Самовывоз»</h3>
+  <div class="ds-box stack" style="max-width:480px">
+    <div class="seg" role="group" aria-label="Способ получения"><button class="seg__btn" type="button" aria-pressed="true" data-value="delivery"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons/sprite.svg#i-delivery"/></svg>Доставка</button><button class="seg__btn" type="button" aria-pressed="false" data-value="pickup"><svg class="icon icon--sm" aria-hidden="true"><use href="assets/icons/sprite.svg#i-pickup"/></svg>Самовывоз</button></div>
+    <p class="t-body-sm t-muted" id="seg-out">Доставим за ~60 мин · бесплатно от 500 ₽</p>
+  </div>
+
+  <h3 class="t-h3 ds-sub">Метки и фильтры</h3>
+  <div class="ds-box stack">
+    <div class="ds-row"><span class="tag tag--hit"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-hit"/></svg>Хит</span><span class="tag tag--new"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-new"/></svg>Новое</span><span class="tag tag--spicy"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-spicy"/></svg>Острое</span><span class="tag tag--veg"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-veg"/></svg>Вегетарианское</span><span class="tag tag--ordered"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-repeat"/></svg>Уже заказывали</span></div>
+    <div class="chips" role="group" aria-label="Фильтр по меткам">
+      <button class="chip" type="button" aria-pressed="true" data-toggle-pressed><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-hit"/></svg>Хиты <span class="chip__count">12</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-toggle-pressed><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-new"/></svg>Новое <span class="chip__count">5</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-toggle-pressed><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-spicy"/></svg>Острое <span class="chip__count">31</span></button>
+      <button class="chip" type="button" aria-pressed="false" data-toggle-pressed><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-veg"/></svg>Вегетарианское <span class="chip__count">4</span></button>
+      <button class="chip" type="button" disabled>Без глютена <span class="chip__count">0</span></button>
+    </div>
+  </div>
+
+  <h3 class="t-h3 ds-sub">Карточки блюд и счётчик</h3>
+  <p class="ds-note" style="margin:0 0 var(--space-4)">Нажмите «Добавить»: кнопка превращается в счётчик, блюдо «летит» в корзину в шапке, появляется тост, сумма пересчитывается. Нажатие на карточку открывает подробности — модальное окно на компьютере и bottom sheet на телефоне.</p>
+  <div class="demo-cards">
+    <article class="dish">
+      <div class="dish__media"><span class="ph" role="img" aria-label="Фьюжн ролл"></span><div class="dish__tags"><span class="tag tag--hit">Хит</span></div></div>
+      <div class="dish__body"><h3 class="dish__title"><a href="#" data-open-dish>Фьюжн ролл</a></h3><p class="dish__meta">314 г</p><p class="dish__desc">Рис, сливочный сыр, огурец, угорь, лосось, копчёный лосось</p></div>
+      <div class="dish__foot"><span class="price">550&#8239;₽</span><div data-buy="fusion-roll" data-name="Фьюжн ролл" data-price="550"></div></div>
+    </article>
+    <article class="dish">
+      <div class="dish__media"><span class="ph" role="img" aria-label="Филадельфия"></span><div class="dish__tags"><span class="tag tag--ordered">Уже заказывали</span></div></div>
+      <div class="dish__body"><h3 class="dish__title"><a href="#" data-open-dish>Филадельфия</a></h3><p class="dish__meta">281 г</p><p class="dish__desc">Рис, лосось, креветка, сыр, авокадо, огурец, японский майонез, омлет</p></div>
+      <div class="dish__foot"><span class="price">340&#8239;₽</span><div data-buy="philadelphia" data-name="Филадельфия" data-price="340"></div></div>
+    </article>
+    <article class="dish">
+      <div class="dish__media"><span class="ph" role="img" aria-label="Сяке Хот ролл опалённый"></span><div class="dish__tags"><span class="tag tag--new">Новое</span></div></div>
+      <div class="dish__body"><h3 class="dish__title"><a href="#" data-open-dish>Сяке Хот ролл опалённый</a></h3><p class="dish__meta">250 г</p><p class="dish__desc">Рис, лосось, сливочный сыр, огурец</p></div>
+      <div class="dish__foot"><span class="price">320&#8239;₽</span><div data-buy="sake-hot" data-name="Сяке Хот ролл опалённый" data-price="320"></div></div>
+    </article>
+    <article class="dish dish--unavailable" aria-label="Мидии по-китайски — временно недоступно">
+      <div class="dish__media"><span class="ph" role="img" aria-label="Мидии по-китайски"></span><span class="dish__unavailable">Временно недоступно</span></div>
+      <div class="dish__body"><h3 class="dish__title">Мидии по-китайски</h3><p class="dish__meta">185 г</p><p class="dish__desc">Мидии, запечённые в пикантном соусе</p></div>
+      <div class="dish__foot"><span class="price">480&#8239;₽</span><div data-buy="mussels" data-name="Мидии по-китайски" data-price="480" data-unavailable></div></div>
+    </article>
+  </div>
+  <h4 class="t-h4 ds-sub">Компактная карточка для допродажи</h4>
+  <div class="upsell">
+    <div class="dish dish--compact" data-fly-root><div class="dish__media"><span class="ph"></span></div><div class="dish__body"><p class="dish__title">Соус спайси</p><p class="dish__meta">50 г · 50&#8239;₽</p></div><div class="dish__foot"><div data-buy="spicy" data-name="Соус спайси" data-price="50" data-no-link></div></div></div>
+    <div class="dish dish--compact" data-fly-root><div class="dish__media"><span class="ph"></span></div><div class="dish__body"><p class="dish__title">Соус ореховый</p><p class="dish__meta">50 г · 90&#8239;₽</p></div><div class="dish__foot"><div data-buy="nut" data-name="Соус ореховый" data-price="90" data-no-link></div></div></div>
+    <div class="dish dish--compact" data-fly-root><div class="dish__media"><span class="ph"></span></div><div class="dish__body"><p class="dish__title">Картофель фри</p><p class="dish__meta">150 г · 130&#8239;₽</p></div><div class="dish__foot"><div data-buy="fries" data-name="Картофель фри" data-price="130" data-no-link></div></div></div>
+  </div>
+  <h4 class="t-h4 ds-sub">Счётчик</h4>
+  <div class="ds-box state-grid">
+    <figure><div class="counter"><button class="counter__btn" type="button" aria-label="Меньше"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-minus"/></svg></button><span class="counter__val">2</span><button class="counter__btn" type="button" aria-label="Больше"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-plus"/></svg></button></div><figcaption class="ds-label">обычный</figcaption></figure>
+    <figure><div class="counter counter--brand"><button class="counter__btn" type="button" aria-label="Меньше"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-minus"/></svg></button><span class="counter__val">3</span><button class="counter__btn" type="button" aria-label="Больше"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-plus"/></svg></button></div><figcaption class="ds-label">в карточке блюда</figcaption></figure>
+    <figure><div class="counter counter--sm"><button class="counter__btn" type="button" aria-label="Меньше" disabled><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-minus"/></svg></button><span class="counter__val">1</span><button class="counter__btn" type="button" aria-label="Больше"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-plus"/></svg></button></div><figcaption class="ds-label">маленький, минимум</figcaption></figure>
+  </div>
+
+  <h3 class="t-h3 ds-sub">Сторис и плашки</h3>
+  <div class="stories" data-stories aria-label="Акции">
+    <button class="story" type="button" data-story="discount" data-kicker="Прогрессивная скидка" data-title="Чем больше заказ — тем больше скидка" data-text="3% от 1 000 ₽, 5% от 2 000 ₽, 7% от 3 000 ₽ и 15% от 10 000 ₽. Скидки не суммируются — применяем самую выгодную." data-cta="В меню" style="--story-bg:#E41E23;--story-fg:#fff"><span class="story__card"><span class="story__inner"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#c-sets"/></svg><span class="story__title">До −15% на заказ</span></span></span></button>
+    <button class="story" type="button" data-story="birthday" data-kicker="День рождения" data-title="−10% на самовывоз именинникам" data-text="В день рождения, а также за 2 дня до и после. Не действует на доставку и в зале." data-cta="Подробнее" style="--story-bg:#1F2421;--story-fg:#F1F2F0"><span class="story__card"><span class="story__inner"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-gift"/></svg><span class="story__title">−10% в день рождения</span></span></span></button>
+    <button class="story" type="button" data-story="free" data-kicker="Доставка" data-title="Бесплатно от 500 ₽" data-text="Привезём по Балакову и Вольску в течение часа — по готовности или ко времени." data-cta="Условия" style="--story-bg:#FF8A5B;--story-fg:#1F2421"><span class="story__card"><span class="story__inner"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-delivery"/></svg><span class="story__title">Доставка бесплатно</span></span></span></button>
+    <button class="story" type="button" data-story="signature" data-kicker="Фирменное" data-title="Фьюжн ролл, ассорти и сет" data-text="Четыре блюда, которые есть только у нас: Фьюжн ролл, Фьюжн ассорти, Фьюжн сет и Отбивная Фьюжн." data-cta="Попробовать" style="--story-bg:#8DB33A;--story-fg:#1F2421"><span class="story__card"><span class="story__inner"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#c-rolls"/></svg><span class="story__title">Фирменное «Фьюжн»</span></span></span></button>
+    <button class="story" type="button" data-story="tour" data-kicker="О нас" data-title="Загляните в кафе" data-text="Фото залов всех четырёх кафе." data-cta="Смотреть" style="--story-bg:#2C322E;--story-fg:#FFB38A"><span class="story__card"><span class="story__inner"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-tour"/></svg><span class="story__title">3D-тур по кафе</span></span></span></button>
+  </div>
+  <div class="stack" style="margin-top:var(--space-5);--stack-gap:var(--space-3)">
+    <div class="banner banner--promo"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-gift"/></svg><div class="banner__body"><p class="banner__title">Скидка 10% именинникам</p><p>В день рождения, за 2 дня до и после — на самовывоз.</p></div><button class="btn btn--ghost btn--icon btn--sm banner__close" type="button" aria-label="Скрыть" onclick="this.closest('.banner').remove()"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-close"/></svg></button></div>
+    <div class="banner banner--warning"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-clock"/></svg><div class="banner__body"><p class="banner__title">Высокая нагрузка</p><p>Готовим дольше обычного: доставка около 90 минут.</p></div></div>
+    <div class="banner"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-info"/></svg><div class="banner__body">Контейнеры бесплатные — их количество кухня считает по порциям.</div></div>
+    <div class="banner banner--ink"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-clock"/></svg><div class="banner__body"><p class="banner__title">Закрыто</p><p>Примем заказ ко времени с 12:00. Заказы на сегодня принимаем до 22:00.</p></div></div>
+  </div>
+
+  <h3 class="t-h3 ds-sub">Статус работы</h3>
+  <div class="ds-box ds-row"><span class="status status--open">Работаем до 23:00</span><span class="status status--last">Заказы на сегодня приняты до 22:00</span><span class="status status--closed">Закрыто — примем заказ ко времени с 12:00</span></div>
+
+  <h3 class="t-h3 ds-sub">Навигация по меню</h3>
+  <div class="ds-box" style="padding:0;overflow:hidden">
+    <nav class="catnav" style="position:static" aria-label="Разделы меню (пример)">
+      <div class="container catnav__sections" data-single>
+        <a class="catnav__link" href="#components" aria-current="true"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#c-rolls"/></svg>Роллы и суши</a>
+        <a class="catnav__link" href="#components"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#c-sets"/></svg>Сеты</a>
+        <a class="catnav__link" href="#components"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#c-soups"/></svg>Горячее</a>
+        <a class="catnav__link" href="#components"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#c-snacks"/></svg>Закуски и салаты</a>
+        <a class="catnav__link" href="#components"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#c-desserts"/></svg>Десерты</a>
+        <a class="catnav__link" href="#components"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#c-sauces"/></svg>Соусы и гарниры</a>
+      </div>
+      <div class="container catnav__subs"><div class="chips" data-single><button class="chip" type="button" aria-pressed="true">Роллы <span class="chip__count">74</span></button><button class="chip" type="button" aria-pressed="false">Запечённые <span class="chip__count">10</span></button><button class="chip" type="button" aria-pressed="false">Жареные <span class="chip__count">25</span></button><button class="chip" type="button" aria-pressed="false">Опалённые <span class="chip__count">3</span></button><button class="chip" type="button" aria-pressed="false">Спринг-роллы <span class="chip__count">3</span></button><button class="chip" type="button" aria-pressed="false">Суши <span class="chip__count">14</span></button><button class="chip" type="button" aria-pressed="false">Гунканы <span class="chip__count">9</span></button></div></div>
+    </nav>
+  </div>
+  <p class="ds-note">На сайте строка разделов прилипает под шапкой, а текущий раздел подсвечивается при прокрутке — как строка разделов этой страницы вверху.</p>
+
+  <h3 class="t-h3 ds-sub" id="cart-demo">Корзина: плавающая кнопка и прогресс</h3>
+  <div class="ds-cols">
+    <div class="ds-box stack">
+      <label class="field"><span class="field__label">Сумма заказа для примера: <b class="ds-num" id="sum-out"></b></span><input class="sum-slider" id="sum" type="range" min="0" max="3600" step="20" value="380"></label>
+      <div class="progress" data-demo-progress="min"><div class="progress__head"><span data-progress-label></span></div><div class="progress__track"><div class="progress__fill"></div></div></div>
+      <div class="progress progress--heat" data-demo-progress="discount"><div class="progress__head"><span data-progress-label></span></div><div class="progress__track"><div class="progress__fill"></div></div><div class="progress__steps"><span data-step="0">0</span><span data-step="1000">1 000 · 3%</span><span data-step="2000">2 000 · 5%</span><span data-step="3000">3 000 · 7%</span></div></div>
+      <p class="ds-note">Шкала скидки — от холодного к горячему: чем ближе к скидке, тем «горячее» цвет. От 10 000 ₽ — 15%.</p>
+    </div>
+    <div class="ds-box stack">
+      <a class="fab-cart fab-cart--inline" href="#cart-demo"><span class="fab-cart__count" data-cart-count>0</span><span class="fab-cart__label">Корзина<span class="fab-cart__time">Доставим за ~60 мин</span></span><span class="fab-cart__sum" data-cart-sum>0&#8239;₽</span></a>
+      <p class="ds-note">На телефоне кнопка прилипает к низу экрана, появляется после первого добавления и «подпрыгивает» при каждом новом. Сумма пересчитывается с анимацией — добавьте блюдо выше.</p>
+      <button class="btn btn--outline btn--sm" type="button" id="clear-cart" style="justify-self:start"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-trash"/></svg>Очистить корзину</button>
+    </div>
+  </div>
+
+  <h3 class="t-h3 ds-sub">Город, точка, акция</h3>
+  <div class="ds-cols">
+    <div class="ds-box stack">
+      <p class="t-h3">Куда доставляем?</p>
+      <div class="city-pick" data-single><button class="city-pick__btn" type="button" aria-pressed="true"><span class="city-pick__name">Балаково</span><span class="city-pick__sub">3 кафе · доставка и самовывоз</span></button><button class="city-pick__btn" type="button" aria-pressed="false"><span class="city-pick__name">Вольск</span><span class="city-pick__sub">1 кафе · доставка и самовывоз</span></button></div>
+      <div class="input-wrap"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-search"/></svg><input class="input" placeholder="Улица и дом" aria-label="Адрес доставки"></div>
+      <div class="banner banner--success"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-check"/></svg><div class="banner__body"><b>Жилгород — доставляет кафе на Ленина, 122.</b> Доставим за ~60 минут, бесплатно от 500 ₽.</div></div>
+    </div>
+    <div class="stack" style="--stack-gap:var(--space-3)">
+      <label class="point"><input type="radio" name="pt" checked><div class="point__head"><div><p class="point__name">Фьюжн на Ленина</p><p class="point__addr">Балаково, ул. Ленина, 122 · Жилгород</p></div><span class="status status--open" data-work-status data-short>Открыто</span></div><div class="point__rows"><span class="point__row"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-clock"/></svg>Ежедневно 12:00–23:00 · заказы до 22:00</span><span class="point__row"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-pickup"/></svg>Приготовим за ~30 минут</span></div></label>
+      <label class="point"><input type="radio" name="pt"><div class="point__head"><div><p class="point__name">Рыбный ресторанчик</p><p class="point__addr">ул. Степная, 25</p></div><span class="tag">Только самовывоз</span></div></label>
+    </div>
+    <div class="stack" style="--stack-gap:var(--space-3)">
+      <article class="point"><div class="point__head"><div><h4 class="point__name">Фьюжн в Вольске</h4><p class="point__addr">ул. Октябрьская, 106, гостиница «Волга»</p></div></div><div class="point__rows"><span class="point__row"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-clock"/></svg>12:00–23:00</span><span class="point__row"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-phone"/></svg><a href="tel:+70000000003">+7 (000) 000-00-03</a></span><span class="point__row"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-info"/></svg>Два зала и VIP-комната</span></div><div class="point__actions"><a class="btn btn--sm" href="tel:+70000000003"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-phone"/></svg>Позвонить</a><a class="btn btn--sm btn--outline" href="#">Маршрут</a></div></article>
+      <a class="promo" href="#" style="--promo-bg:#1F2421;--promo-fg:#F1F2F0"><span class="promo__art" style="color:#E41E23">−10%</span><span class="promo__body"><span class="promo__title">В день рождения</span><span class="promo__text">На самовывоз, за 2 дня до и после праздника</span></span></a>
+    </div>
+  </div>
+
+  <h3 class="t-h3 ds-sub">Окна, поиск, подтверждение, тосты</h3>
+  <div class="ds-box ds-row">
+    <button class="btn btn--ink" type="button" data-open-dish>Открыть карточку блюда</button>
+    <button class="btn btn--outline" type="button" data-open-search><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-search"/></svg>Открыть поиск</button>
+    <button class="btn btn--outline" type="button" id="demo-confirm"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-trash"/></svg>Очистить заказ?</button>
+    <button class="btn btn--outline" type="button" id="demo-toast">Показать тост</button>
+    <button class="btn btn--outline" type="button" data-open-drawer>Мобильное меню</button>
+  </div>
+  <p class="ds-note">На ширине меньше 768 px окно автоматически становится bottom sheet: выезжает снизу, закрывается свайпом вниз, кнопка «Добавить» прилипает к низу. Фокус остаётся внутри окна, Esc закрывает.</p>
+
+  <h3 class="t-h3 ds-sub">Пустые состояния</h3>
+  <div class="ds-cols">
+    <div class="ds-box empty"><svg class="empty__art" viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons/sprite.svg#c-rolls"/></svg><p class="empty__title">В корзине пока пусто</p><p class="empty__text">Начните с хитов — или повторите прошлый заказ.</p><a class="btn" href="#">Перейти в меню</a></div>
+    <div class="ds-box empty"><svg class="empty__art" viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons/sprite.svg#i-search"/></svg><p class="empty__title">Ничего не нашлось</p><p class="empty__text">По запросу «пицца» блюд нет. Попробуйте «ролл с угрём» или посмотрите хиты.</p><div class="cluster" style="justify-content:center"><button class="chip" type="button">Филадельфия</button><button class="chip" type="button">Калифорния</button></div></div>
+  </div>
+
+  <h3 class="t-h3 ds-sub">Статус заказа</h3>
+  <div class="ds-cols">
+    <div class="ds-box"><p class="t-h4" style="margin-bottom:var(--space-4)">Заказ № 2048 · к 19:40</p><div class="track">
+      <div class="track__step is-done"><span class="track__dot"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-check"/></svg></span><div><p class="track__title">В обработке</p><p class="track__text">18:42</p></div></div>
+      <div class="track__step is-done"><span class="track__dot"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-check"/></svg></span><div><p class="track__title">Готовим</p><p class="track__text">18:45</p></div></div>
+      <div class="track__step is-current" aria-current="step"><span class="track__dot"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-pickup"/></svg></span><div><p class="track__title">Курьер скоро заберёт заказ</p><p class="track__text">Заказ собран и упакован</p></div></div>
+      <div class="track__step"><span class="track__dot"></span><div><p class="track__title">В пути</p></div></div>
+      <div class="track__step"><span class="track__dot"></span><div><p class="track__title">Заказ доставлен</p></div></div>
+    </div></div>
+    <div class="ds-box"><p class="t-h4" style="margin-bottom:var(--space-4)">Экстренный сценарий</p><div class="track">
+      <div class="track__step is-done"><span class="track__dot"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-check"/></svg></span><div><p class="track__title">Готовим</p></div></div>
+      <div class="track__step is-delayed" aria-current="step"><span class="track__dot"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-clock"/></svg></span><div><p class="track__title">Курьер задерживается</p><p class="track__text">Извините за ожидание — курьер будет примерно через 15 мин</p></div></div>
+      <div class="track__step"><span class="track__dot"></span><div><p class="track__title">Заказ доставлен</p></div></div>
+    </div><a class="btn btn--outline btn--sm" href="tel:+70000000001"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-phone"/></svg>Позвонить в кафе</a></div>
+  </div>
+
+  <h3 class="t-h3 ds-sub">Табы, аккордеон, загрузка</h3>
+  <div class="ds-cols">
+    <div class="ds-box"><div data-tabs><div class="tabs__list" role="tablist" aria-label="Профиль"><button class="tabs__tab" role="tab" id="t1" aria-controls="p1" aria-selected="true" type="button">Заказы</button><button class="tabs__tab" role="tab" id="t2" aria-controls="p2" type="button">Адреса</button><button class="tabs__tab" role="tab" id="t3" aria-controls="p3" type="button">Данные</button><button class="tabs__tab" role="tab" id="t4" aria-controls="p4" type="button" disabled>Бонусы</button></div>
+      <div class="tabs__panel" role="tabpanel" id="p1" aria-labelledby="t1" tabindex="0"><p class="t-body-sm">12 октября · 1 240&#8239;₽ · Филадельфия, Калифорния № 1, соус спайси</p><button class="btn btn--sm btn--soft" type="button" style="margin-top:var(--space-3)"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-repeat"/></svg>Повторить заказ</button></div>
+      <div class="tabs__panel" role="tabpanel" id="p2" aria-labelledby="t2" tabindex="0" hidden><p class="t-body-sm">Дом: ул. Ленина, 1, кв. 4</p></div>
+      <div class="tabs__panel" role="tabpanel" id="p3" aria-labelledby="t3" tabindex="0" hidden><p class="t-body-sm">Дата рождения нужна для скидки 10% на самовывоз.</p></div>
+      <div class="tabs__panel" role="tabpanel" id="p4" aria-labelledby="t4" tabindex="0" hidden></div></div>
+      <p class="ds-note">«Бонусы» — место под будущую программу лояльности, пока недоступно.</p></div>
+    <div class="ds-box accordion" style="padding-block:0">
+      <details open><summary>Сколько стоит доставка?<svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-chevron-down"/></svg></summary><div class="accordion__body">Бесплатно по городу. Минимальная сумма заказа — 500 ₽.</div></details>
+      <details><summary>До скольки принимаете заказы?<svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-chevron-down"/></svg></summary><div class="accordion__body">Кафе работают с 12:00 до 23:00, заказы на сегодня — до 22:00. Позже можно оформить заказ ко времени на завтра.</div></details>
+      <details><summary>Сколько стоят контейнеры?<svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-chevron-down"/></svg></summary><div class="accordion__body">Ничего — контейнеры бесплатные.</div></details>
+    </div>
+    <div class="ds-box stack" aria-label="Загрузка карточки" aria-busy="true"><div class="skeleton" style="aspect-ratio:4/3;border-radius:var(--radius-lg)"></div><div class="skeleton" style="height:20px;width:70%"></div><div class="skeleton" style="height:14px;width:40%"></div><div class="skeleton" style="height:36px;width:50%"></div></div>
+  </div>
+
+  <h3 class="t-h3 ds-sub">Согласие на cookies</h3>
+  <div class="cookie" style="position:static;width:auto;max-width:440px;animation:none"><p class="t-body-sm">Мы используем cookies и Яндекс Метрику, чтобы сайт работал удобнее. Аналитика включится только с вашего согласия. <a href="#">Подробнее</a></p><div class="cookie__actions"><button class="btn btn--sm btn--ink" type="button">Принять все</button><button class="btn btn--sm btn--outline" type="button">Только необходимые</button></div></div>
+</section>
+
+<!-- ================= АНИМАЦИЯ ================= -->
+<section class="container ds-sec" id="motion">
+  <h2 class="t-h2">Анимация</h2>
+  <p class="ds-lead">Движение объясняет, что произошло: блюдо улетело в корзину, сумма выросла, окно пришло снизу. Анимируем только transform и opacity — это не тормозит на недорогих телефонах. Если в системе включено «Уменьшить движение», анимации отключаются, а контент сразу виден.</p>
+  <div class="ds-table"><table><thead><tr><th>Токен</th><th>Длительность</th><th>Где</th></tr></thead><tbody>
+    <tr><td><code>--dur-instant</code></td><td class="ds-num">100 мс</td><td>Цвет при наведении, нажатие кнопки</td></tr>
+    <tr><td><code>--dur-fast</code></td><td class="ds-num">160 мс</td><td>Переключатели, чипы, закрытие тоста</td></tr>
+    <tr><td><code>--dur-base</code></td><td class="ds-num">240 мс</td><td>Счётчик, сегмент, подчёркивание в навигации, тост</td></tr>
+    <tr><td><code>--dur-slow</code></td><td class="ds-num">360 мс</td><td>Окно, bottom sheet, меню, появление блоков, пересчёт суммы</td></tr>
+    <tr><td><code>--dur-slower</code></td><td class="ds-num">600 мс</td><td>Полёт блюда в корзину, анимация первого экрана</td></tr>
+  </tbody></table></div>
+  <div class="motion-demo" style="margin-top:var(--space-6)">
+    <div class="motion-card" data-ease="standard"><b>standard</b><span class="ds-label">0.2, 0, 0, 1 — большинство переходов</span><div class="motion-track"><span class="motion-dot"></span></div></div>
+    <div class="motion-card" data-ease="decelerate"><b>decelerate</b><span class="ds-label">0.05, 0.7, 0.1, 1 — появление: окна, сторис</span><div class="motion-track"><span class="motion-dot"></span></div></div>
+    <div class="motion-card" data-ease="accelerate"><b>accelerate</b><span class="ds-label">0.3, 0, 0.8, 0.15 — уход: закрытие, удаление</span><div class="motion-track"><span class="motion-dot"></span></div></div>
+    <div class="motion-card" data-ease="spring"><b>spring</b><span class="ds-label">0.34, 1.56, 0.64, 1 — отклик: счётчик, корзина</span><div class="motion-track"><span class="motion-dot"></span></div></div>
+  </div>
+  <button class="btn btn--outline" type="button" id="play-motion" style="margin-top:var(--space-4)">Проиграть</button>
+  <ul class="prose" style="margin-top:var(--space-8)">
+    <li><b>Одна главная анимация</b> — на первом экране главной: красная начинка и кольцо «слипаются» в знак, палочка входит сверху. Остальное — короткие отклики.</li>
+    <li><b>Появление при прокрутке</b> — блоки поднимаются на 16 px и проявляются. Без JS и при reduced-motion всё видно сразу.</li>
+    <li><b>Отклик на действие</b> — меньше 100 мс до первой реакции: нажатие кнопки, «прыжок» цифры в счётчике.</li>
+    <li><b>Ничего не мигает дольше 5 секунд</b>, кроме точки «Работаем» и текущего шага статуса заказа.</li>
+  </ul>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="stack"><img class="footer__logo" src="assets/brand/logo-on-dark.svg" alt="Фьюжн" width="158" height="44"><p class="t-body-sm" style="color:var(--palette-nori-400)">Японская кухня без церемоний с 2009 года. Балаково и Вольск.</p></div>
+      <div class="footer__points">
+        <div class="footer__point"><b>Ленина, 122</b><span>Балаково · Жилгород</span><a href="tel:+70000000001">+7 (000) 000-00-01</a></div>
+        <div class="footer__point"><b>Трнавская, 36/8</b><span>Балаково · Новые районы</span><a href="tel:+70000000002">+7 (000) 000-00-02</a></div>
+        <div class="footer__point"><b>Степная, 25</b><span>Балаково · Рыбный ресторанчик</span><a href="tel:+70000000004">+7 (000) 000-00-04</a></div>
+        <div class="footer__point"><b>Октябрьская, 106</b><span>Вольск · гостиница «Волга»</span><a href="tel:+70000000003">+7 (000) 000-00-03</a></div>
+      </div>
+    </div>
+    <nav class="footer__nav" aria-label="Разделы сайта"><a href="#">Меню</a><a href="#">Доставка и оплата</a><a href="#">Акции</a><a href="#">О нас</a><a href="#">Контакты</a><a href="#">Отзывы</a></nav>
+    <div class="footer__legal"><span>© Кафе «Фьюжн», 2009–2026</span><a href="#">Политика конфиденциальности</a><a href="#">Пользовательское соглашение</a><a href="#">Cookies</a><span>Ежедневно 12:00–23:00</span></div>
+  </div>
+</footer>
+
+<a class="fab-cart is-hidden" data-auto href="#cart-demo" style="display:none" id="fab-mobile"><span class="fab-cart__count" data-cart-count>0</span><span class="fab-cart__label">Корзина</span><span class="fab-cart__sum" data-cart-sum>0&#8239;₽</span></a>
+
+<script src="assets/js/ui.js" data-sprite="assets/icons/sprite.svg"></script>
+<script>
+(function () {
+  const { $, $$, price } = FZ;
+  const S = 'assets/icons/sprite.svg';
+  FZ.cartUrl = '#cart-demo';
+  // На телефоне плавающая корзина видна
+  const fab = $('#fab-mobile'); const mq = matchMedia('(max-width: 767px)'); const fabShow = () => { fab.style.display = mq.matches ? '' : 'none'; }; mq.addEventListener('change', fabShow); fabShow();
+
+  // Палитра, темы и контраст — из JSON
+  fetch('assets/tokens/tokens.json').then(r => r.json()).then(t => {
+    const pal = $('#palette'); pal.innerHTML = '';
+    const names = { red: 'Красный (бренд)', nori: 'Нори (нейтральные)', salmon: 'Лосось', avocado: 'Авокадо', ginger: 'Имбирь', green: 'Успех', amber: 'Предупреждение', crimson: 'Ошибка', blue: 'Инфо' };
+    Object.entries(t.palette).filter(([k]) => !k.startsWith('$')).forEach(([g, shades]) => {
+      const wrap = document.createElement('div');
+      wrap.innerHTML = `<p class="t-caption t-muted" style="margin-bottom:6px">${names[g] || g}</p><div class="swatches">${Object.entries(shades).map(([k, v]) => `<div class="sw"><i style="background:${v}"></i><div><b>${g}-${k}</b><code>${v}</code></div></div>`).join('')}</div>`;
+      pal.appendChild(wrap);
+    });
+    const res = v => { const m = /^\{palette\.(\w+)\.(\d+)\}$/.exec(v); return m ? t.palette[m[1]][m[2]] : v; };
+    const show = ['bg', 'surface-sunken', 'border', 'border-input', 'text', 'text-muted', 'text-subtle', 'brand', 'brand-hover', 'brand-text', 'ink', 'success', 'warning', 'error', 'info'];
+    $('#themes').innerHTML = ['light', 'dark'].map(th => { const m = t.theme[th]; const bg = res(m.bg), fg = res(m.text); return `<div class="theme-col" style="background:${bg};color:${fg};border-color:${res(m.border)}"><p class="t-h4" style="margin-bottom:8px">${th === 'light' ? 'Светлая' : 'Тёмная'}</p>${show.map(k => `<div class="tok"><i style="background:${res(m[k])}"></i><span>--color-${k}</span><code>${res(m[k])}</code></div>`).join('')}</div>`; }).join('');
+  }).catch(() => { $('#palette').innerHTML = '<p class="t-muted">Палитра читается из tokens.json — откройте страницу через сервер.</p>'; });
+  fetch('assets/tokens/contrast.json').then(r => r.json()).then(rows => {
+    $('#contrast').innerHTML = rows.map(r => `<tr><td>${r.theme === 'light' ? 'Светлая' : 'Тёмная'}</td><td>${r.label}<br><code>${r.fg} / ${r.bg}</code></td><td><span class="chip-sample" style="background:${r.bgHex};color:${r.fgHex};border:1px solid rgba(128,128,128,.25)">Аа 550</span></td><td class="ds-num ${r.pass ? 'pass' : 'fail'}">${r.ratio.toFixed(2)} : 1</td><td class="ds-num">${r.need} : 1</td></tr>`).join('');
+  }).catch(() => {});
+
+  // Отступы
+  $('#spaces').innerHTML = [1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24].map(n => `<div class="space-bar"><span class="ds-label" style="width:72px">space-${n}</span><i style="width:${n * 4}px"></i><span class="ds-num t-caption t-muted">${n * 4} px</span></div>`).join('');
+
+  // Иконки
+  const icon = (id, name) => `<figure><svg class="icon" aria-hidden="true"><use href="${S}#${id}"/></svg><figcaption>${name}</figcaption></figure>`;
+  const cats = [['c-rolls', 'Роллы'], ['c-baked', 'Запечённые'], ['c-fried', 'Жареные'], ['c-torched', 'Опалённые'], ['c-spring', 'Спринг-роллы'], ['c-sushi', 'Суши'], ['c-gunkan', 'Гунканы'], ['c-sets', 'Сеты'], ['c-soups', 'Супы'], ['c-hot', 'Горячие блюда'], ['c-noodles', 'Лапша'], ['c-snacks', 'Закуски'], ['c-salads', 'Салаты'], ['c-desserts', 'Десерты'], ['c-sauces', 'Соусы'], ['c-sides', 'Гарниры']];
+  $('#cat-icons').innerHTML = cats.map(([id, n]) => icon(id, n)).join('');
+  $('#tag-icons').innerHTML = [['i-hit', 'Хит'], ['i-new', 'Новое'], ['i-spicy', 'Острое'], ['i-veg', 'Вегетарианское'], ['i-repeat', 'Уже заказывали']].map(([id, n]) => icon(id, n)).join('');
+  $('#ui-icons').innerHTML = ['search', 'cart', 'user', 'pin', 'phone', 'clock', 'delivery', 'pickup', 'card', 'cash', 'gift', 'tour', 'repeat', 'trash', 'edit', 'star', 'info', 'alert', 'check', 'plus', 'minus', 'close', 'filter', 'menu', 'chevron-left', 'chevron-right', 'chevron-down', 'arrow-right', 'external', 'logout', 'sun', 'moon'].map(n => icon('i-' + n, n)).join('');
+
+  // Телефон и SMS
+  $('#ph-next').addEventListener('click', () => { const i = $('#ph'); if (FZ.phoneValid(i.value)) { FZ.toast('Код отправлен на ' + i.value); $('.otp input').focus(); } else { i.setAttribute('aria-invalid', 'true'); $('#phe').hidden = false; i.focus(); } });
+  const otp = $('[data-otp]');
+  let stop = FZ.timer($('#otp-timer'), 59, () => { $('#otp-timer').innerHTML = '<button class="btn btn--ghost btn--sm" type="button" id="resend" style="margin-left:-12px">Отправить код повторно</button>'; });
+  document.addEventListener('click', e => { if (e.target.id === 'resend') { stop = FZ.timer($('#otp-timer'), 59); FZ.toast('Новый код отправлен'); } });
+  otp.addEventListener('complete', e => { if (e.detail === '1234') { otp.classList.add('is-ok'); $('#otp-err').hidden = true; FZ.toast('Вы вошли'); stop(); $('#otp-timer').textContent = ''; } else { otp.setAttribute('aria-invalid', 'true'); $('#otp-err').hidden = false; setTimeout(() => { $$('input', otp).forEach(i => { i.value = ''; }); $('input', otp).focus(); }, 400); } });
+
+  // Сегмент
+  document.addEventListener('change', e => { if (e.target.classList && e.target.classList.contains('seg')) $('#seg-out').textContent = e.detail === 'pickup' ? 'Приготовим за ~30 мин · выберите кафе' : 'Доставим за ~60 мин · бесплатно от 500 ₽'; });
+
+  // Прогресс с ползунком
+  const slider = $('#sum');
+  const upd = () => { const s = Number(slider.value); $('#sum-out').textContent = price(s); const p1 = $('[data-demo-progress="min"]'); const left = Math.max(0, 500 - s); p1.style.setProperty('--p', Math.min(100, s / 5)); p1.classList.toggle('progress--done', !left); $('[data-progress-label]', p1).innerHTML = left ? `Закажите ещё на <b>${price(left)}</b> — минимальная сумма 500&#8239;₽` : 'Минимальная сумма набрана — доставка бесплатная'; const p2 = $('[data-demo-progress="discount"]'); const d = FZ.discountFor(s); p2.style.setProperty('--p', Math.min(100, s / 30)); $('[data-progress-label]', p2).innerHTML = d.next ? `Ещё <b>${price(d.next.from - s)}</b> — и скидка ${d.next.percent}%${d.current ? ` <span class="t-muted">(сейчас ${d.current.percent}%)</span>` : ''}` : `Ваша скидка <b>${d.current.percent}%</b>`; $$('[data-step]', p2).forEach(x => x.classList.toggle('is-reached', s >= Number(x.dataset.step) && Number(x.dataset.step) > 0)); };
+  slider.addEventListener('input', upd); upd();
+  $('#clear-cart').addEventListener('click', async () => { if (!FZ.cart.count()) return FZ.toast('Корзина уже пустая'); if (await FZ.confirm({ title: 'Очистить заказ?', text: 'Все блюда пропадут из корзины.', ok: 'Очистить' })) { FZ.cart.clear(); FZ.toast('Корзина очищена'); } });
+
+  // Карточка блюда
+  const dishHTML = `<div class="modal__body"><div class="dish-detail" data-fly-root>
+    <div class="dish-detail__media"><span class="ph" role="img" aria-label="Фьюжн ролл"></span></div>
+    <div class="dish-detail__info">
+      <div class="cluster" style="--cluster-gap:6px"><span class="tag tag--hit">Хит</span><span class="tag tag--ordered">Уже заказывали</span></div>
+      <h2 class="t-h1">Фьюжн ролл</h2>
+      <p class="dish-detail__story">Наш фирменный ролл с 2009 года: угорь и два лосося — свежий и копчёный — в одном ролле. Всё лучшее вместе, как в названии.</p>
+      <div><p class="dish-detail__label">Состав</p><p>Рис, сливочный сыр, огурец, угорь, лосось, копчёный лосось</p></div>
+      <div><p class="dish-detail__label">На 100 г · примерно</p><div class="nutri"><div><b>212</b><span>ккал</span></div><div><b>9</b><span>белки, г</span></div><div><b>8</b><span>жиры, г</span></div><div><b>26</b><span>углеводы, г</span></div></div></div>
+      <p class="t-caption t-muted">314 г · (8 шт)</p>
+      <div class="dish-detail__buy"><span class="price-lg">550&#8239;₽</span><div data-buy="fusion-roll" data-name="Фьюжн ролл" data-price="550" data-brand data-size="lg" data-label="Добавить"></div></div>
+    </div></div></div>`;
+  document.addEventListener('click', e => { if (e.target.closest('[data-open-dish]')) { e.preventDefault(); FZ.openOverlay(dishHTML, { label: 'Фьюжн ролл' }); } });
+
+  // Поиск
+  const DISHES = [['Филадельфия', 'Роллы', 340], ['Калифорния № 1', 'Роллы', 410], ['Калифорния № 2', 'Роллы', 410], ['Сяке Хот ролл опалённый', 'Опалённые роллы', 320], ['Фьюжн ролл', 'Роллы', 550], ['Фьюжн сет', 'Сеты', 2700], ['Сет для компании', 'Сеты', 2040], ['Унаги ролл', 'Роллы', 160], ['Суши Унаги', 'Суши', 90], ['Мисо Эби', 'Супы', 320], ['Том ям с креветками', 'Супы', 320], ['Фунчоза с морепродуктами', 'Лапша', 320], ['Чизкейк клубничный', 'Десерты', 220]];
+  const CATS = ['Роллы', 'Запечённые роллы', 'Жареные роллы', 'Опалённые роллы', 'Суши', 'Гунканы', 'Сеты', 'Супы', 'Лапша', 'Десерты', 'Соусы'];
+  const norm = s => s.toLowerCase().replace(/ё/g, 'е').replace(/philadelphia|филадельфия/g, 'филадельфия');
+  const searchHTML = `<div class="modal__body search"><h2 class="t-h3">Поиск по меню</h2><div class="input-wrap"><svg class="icon" aria-hidden="true"><use href="${S}#i-search"/></svg><input class="input input--lg" id="sq" type="search" placeholder="Например, «фила» или «угорь»" aria-label="Поиск по меню" autocomplete="off"></div><div id="sr" aria-live="polite"></div></div>`;
+  const renderSearch = q => {
+    const box = $('#sr'); if (!box) return; const n = norm(q.trim());
+    if (!n) { box.innerHTML = `<p class="search__group-title">Нет времени искать? Доверьтесь рекомендациям</p><div class="chips" style="flex-wrap:wrap">${['Филадельфия', 'Фьюжн сет', 'Том ям', 'Опалённые'].map(x => `<button class="chip" type="button" data-q="${x}">${x}</button>`).join('')}</div>`; return; }
+    const cats = CATS.filter(c => norm(c).includes(n)); const dishes = DISHES.filter(d => norm(d[0]).includes(n) || norm(d[1]).includes(n));
+    const hl = s => s.replace(new RegExp('(' + q.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig'), '<mark>$1</mark>');
+    if (!cats.length && !dishes.length) { box.innerHTML = `<div class="empty" style="padding-block:var(--space-6)"><svg class="empty__art" viewBox="0 0 24 24" aria-hidden="true"><use href="${S}#i-search"/></svg><p class="empty__title">Ничего не нашлось</p><p class="empty__text">По запросу «${q.replace(/</g, '&lt;')}» блюд нет. Проверьте написание или посмотрите хиты.</p></div>`; return; }
+    box.innerHTML = `<div class="search__results">${cats.length ? `<div><p class="search__group-title">Категории</p><div class="chips" style="flex-wrap:wrap">${cats.map(c => `<a class="chip" href="#components">${hl(c)}</a>`).join('')}</div></div>` : ''}${dishes.length ? `<div><p class="search__group-title">Блюда</p>${dishes.map(d => `<a class="search__item" href="#components" data-open-dish><span class="search__thumb"><span class="ph"></span></span><span><span>${hl(d[0])}</span><br><span class="t-caption t-muted">${d[1]}</span></span><span class="price-sm">${price(d[2])}</span></a>`).join('')}</div>` : ''}</div>`;
+  };
+  document.addEventListener('click', e => {
+    if (e.target.closest('[data-open-search]')) { FZ.openOverlay(searchHTML, { label: 'Поиск по меню' }); const i = $('#sq'); renderSearch(''); i.addEventListener('input', () => renderSearch(i.value)); setTimeout(() => i.focus(), 40); }
+    const qb = e.target.closest('[data-q]'); if (qb) { const i = $('#sq'); i.value = qb.dataset.q; renderSearch(i.value); i.focus(); }
+  });
+
+  // Подтверждение, тост, мобильное меню
+  $('#demo-confirm').addEventListener('click', async () => { const ok = await FZ.confirm({ title: 'Очистить заказ?', text: 'Вы хотите удалить все позиции из заказа?', ok: 'Очистить' }); FZ.toast(ok ? 'Заказ очищен' : 'Ничего не удалили'); });
+  $('#demo-toast').addEventListener('click', () => FZ.toast('«Филадельфия» в корзине', { action: { label: 'Перейти', onClick: () => location.hash = 'cart-demo' } }));
+  document.addEventListener('click', e => {
+    if (!e.target.closest('[data-open-drawer]')) return;
+    const d = document.createElement('div'); d.className = 'drawer'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true'); d.setAttribute('aria-label', 'Меню');
+    d.innerHTML = `<div class="drawer__backdrop"></div><div class="drawer__panel"><div class="cluster" style="justify-content:space-between"><img src="assets/brand/logo.svg" alt="Фьюжн" height="36" style="height:36px;width:auto" data-logo><button class="btn btn--ghost btn--icon" type="button" data-x aria-label="Закрыть меню"><svg class="icon" aria-hidden="true"><use href="${S}#i-close"/></svg></button></div><span class="status" data-work-status style="margin-top:var(--space-4);justify-self:start"></span><nav class="drawer__nav" aria-label="Меню сайта"><a href="#">Меню<svg class="icon" aria-hidden="true"><use href="${S}#i-chevron-right"/></svg></a><a href="#">Акции<svg class="icon" aria-hidden="true"><use href="${S}#i-chevron-right"/></svg></a><a href="#">Доставка и оплата<svg class="icon" aria-hidden="true"><use href="${S}#i-chevron-right"/></svg></a><a href="#">О нас<svg class="icon" aria-hidden="true"><use href="${S}#i-chevron-right"/></svg></a><a href="#">Контакты<svg class="icon" aria-hidden="true"><use href="${S}#i-chevron-right"/></svg></a><a href="#">Отзывы<svg class="icon" aria-hidden="true"><use href="${S}#i-chevron-right"/></svg></a></nav><div class="drawer__phones"><p class="t-overline t-muted">Позвонить</p><a class="btn btn--outline btn--block" href="tel:+70000000001">Ленина · +7 (000) 000-00-01</a><a class="btn btn--outline btn--block" href="tel:+70000000002">Трнавская · +7 (000) 000-00-02</a><a class="btn btn--outline btn--block" href="tel:+70000000004">Степная · +7 (000) 000-00-04</a><a class="btn btn--outline btn--block" href="tel:+70000000003">Вольск · +7 (000) 000-00-03</a></div></div>`;
+    document.body.appendChild(d); document.documentElement.classList.add('no-scroll'); FZ.renderStatus();
+    const close = () => { d.remove(); document.documentElement.classList.remove('no-scroll'); };
+    d.addEventListener('click', ev => { if (ev.target.closest('[data-x]') || ev.target.classList.contains('drawer__backdrop')) close(); });
+    d.addEventListener('keydown', ev => { if (ev.key === 'Escape') close(); });
+    $('[data-x]', d).focus();
+  });
+
+  // Анимация: проигрывание кривых
+  $('#play-motion').addEventListener('click', () => { $$('.motion-card').forEach(c => { const dot = $('.motion-dot', c); dot.style.transition = 'none'; c.classList.remove('play'); void dot.offsetWidth; dot.style.transition = `left 900ms var(--ease-${c.dataset.ease})`; c.classList.add('play'); }); });
+
+  // Логотип в тёмной теме
+  const syncLogo = () => { const dark = document.documentElement.getAttribute('data-theme') === 'dark' || (!document.documentElement.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches); $$('img[data-logo]').forEach(i => { i.src = dark ? 'assets/brand/logo-on-dark.svg' : 'assets/brand/logo.svg'; }); $$('.logo-mark').forEach(i => { i.src = dark ? 'assets/brand/mark-on-dark.svg' : 'assets/brand/mark.svg'; }); };
+  new MutationObserver(syncLogo).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] }); matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncLogo); syncLogo();
+})();
+</script>
+</body>
+</html>
