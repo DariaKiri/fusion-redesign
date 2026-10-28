@@ -56,7 +56,8 @@ main:focus { outline: none; }
 @keyframes fx-cut { from { stroke-dashoffset: 40; } to { stroke-dashoffset: 0; } }
 @keyframes fx-orb { 0% { opacity: 0; transform: scale(.2); } 30% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(.3); } }
 @keyframes fx-float { 50% { transform: translateY(-1.5%) rotate(-1.5deg); } }
-@media (prefers-reduced-motion: reduce) { .hero__art * { animation: none !important; } .hero__art .fx-orb { display: none; } }
+/* Знак на главной статичный: анимацию сборки логотипа не обсуждали — выключена */
+.hero__art * { animation: none !important; } .hero__art .fx-orb { display: none; }
 
 /* ============ Главная: разделы ============ */
 .home-block { padding-block: var(--space-8); }
