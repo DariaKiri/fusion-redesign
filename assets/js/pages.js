@@ -270,7 +270,7 @@
       if (pay === 'card_online') {
         setTimeout(() => {
           btn.classList.remove('is-loading');
-          const o = FZ.openOverlay(`<div class="confirm"><p class="t-overline t-muted">Альфа-Банк · демо-оплата</p><h2 class="confirm__title">Оплатить ${price(order.total)}?</h2><p class="t-muted">В портфолио-версии оплата не списывается: здесь откроется платёжная страница банка.</p><div class="confirm__actions"><button class="btn btn--outline" type="button" data-close>Отмена</button><button class="btn" type="button" data-pay>Оплатить</button></div></div>`, { label: 'Оплата', size: 'sm' });
+          const o = FZ.openOverlay(`<div class="confirm"><p class="t-overline t-muted">Альфа-Банк · оплата для примера</p><h2 class="confirm__title">Оплатить ${price(order.total)}?</h2><p class="t-muted">Деньги не спишутся: на настоящем сайте здесь открылась бы платёжная страница банка.</p><div class="confirm__actions"><button class="btn btn--outline" type="button" data-close>Отмена</button><button class="btn" type="button" data-pay>Оплатить</button></div></div>`, { label: 'Оплата', size: 'sm' });
           $('[data-pay]', o.el).addEventListener('click', () => { order.paid = true; finish(); });
         }, 500);
       } else setTimeout(finish, 600);

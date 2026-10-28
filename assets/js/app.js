@@ -319,7 +319,7 @@
     if (document.querySelector('.concept-bar')) return;
     const bar = document.createElement('div');
     bar.className = 'concept-bar'; bar.setAttribute('role', 'note');
-    bar.innerHTML = '<b>Концепт редизайна</b><span>Выполнен по собственной инициативе. Не официальный сайт кафе «Фьюжн», заказы не принимаются.</span>';
+    bar.innerHTML = '<b>Концепт редизайна</b><span>Я сделала этот сайт для портфолио, это не официальный сайт кафе «Фьюжн». Заказ можно оформить целиком, но он никуда не отправится.</span>';
     document.body.prepend(bar);
   }
   function boot() {
